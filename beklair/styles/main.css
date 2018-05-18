@@ -1,0 +1,137 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:400,700');
+
+/* BASE STYLES */
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: 1s;
+}
+
+body {
+  color: #fff;
+  font: 400 16px/150% 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1050px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font: 700 36px/150% 'Roboto Slab', serif;
+  text-transform: uppercase;
+}
+
+h4, h5, h6 {
+  display: inline-block;
+  color: #000;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.muted {
+  margin: 0;
+  color: #999;
+}
+
+.group {
+  text-align: left;
+  width: 100%;
+  margin: 44px 0;
+}
+.group::after {
+  content: "";
+  clear:both;
+  display: table;
+}
+
+.group-left {
+  display: inline-block;
+  float: left;
+  padding-right: 12px;
+}
+.group-right {
+  display: inline-block;
+  float: right;
+  padding-left: 12px;
+}
+
+/* LAYOUT STARTS */
+#header-hero {
+  /* this is effective because of a CSS quirk in which gradients are treated as another image by the browser, inspired by this article: https://medium.com/@tsmith18256/creating-a-css-image-overlay-with-one-element-205c66100d8f */
+  background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/photo1.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+}
+
+#header-icons {
+  text-align: right;
+  padding: 11px 0;
+}
+
+#header-strip {
+  padding: 22px 0;
+  height: 100px;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+#header-strip h1 {
+  display: inline-block;
+}
+
+#header-nav {
+  padding-top: 16px;
+  float: right;
+  text-align: right;
+}
+
+#header-nav .selected {
+  color: #a09159;
+}
+
+#header-titles {
+  padding-top: 8%;
+  text-align: center;
+}
+
+.lead {
+  font: 400 18px/150% 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  letter-spacing: 0.1em;
+}
+
+#header-titles h2 {
+  font-size: 3em;
+  text-shadow: 2px 2px 4px #000;
+}
+
+a.btn {
+  display: inline-block;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 12px;
+  width: 200px;
+  margin: 22px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#section-two {
+  color: #000;
+  text-align: center;
+  padding-top: 44px;
+}
+
+#second-image,
+#second-text {
+  width: 50%;
+  margin: 0;
+  display: inline-block
+}

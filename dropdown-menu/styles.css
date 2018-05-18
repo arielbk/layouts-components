@@ -1,0 +1,36 @@
+body {
+  font: 16px Arial, sans-serif;
+}
+nav {
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+}
+ul {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ul li {
+  float: left;
+  width: 220px;
+  height: 40px;
+  background-color: rgba(0,0,0,0.8);
+  line-height: 40px;
+  text-align: center;
+}
+ul li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+}
+ul li a:hover {
+  background-color: #3d08ea;
+}
+ul li ul li {
+  display: none;
+}
+ul li:hover ul li {
+  display: block;
+}

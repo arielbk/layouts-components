@@ -5,7 +5,7 @@
 *, *::before, *::after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  transition: 1s;
+  transition: 0.7s;
 }
 
 body {
@@ -16,6 +16,10 @@ body {
 .container {
   margin: 0 auto;
   max-width: 1050px;
+}
+
+a {
+  text-decoration: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -41,6 +45,7 @@ h4, h5, h6 {
   width: 100%;
   margin: 44px 0;
 }
+.clearfix,
 .group::after {
   content: "";
   clear:both;
@@ -65,7 +70,6 @@ h4, h5, h6 {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
   width: 100%;
   height: 100vh;
   min-height: 600px;
@@ -77,28 +81,76 @@ h4, h5, h6 {
 }
 
 #header-strip {
-  padding: 22px 0;
-  height: 100px;
   width: 100%;
   background: rgba(0,0,0,0.5);
+  height: 4rem;
+}
+
+#header-strip a {
+  color: #fff;
 }
 
 #header-strip h1 {
   display: inline-block;
+  line-height: 4rem;
 }
 
 #header-nav {
-  padding-top: 16px;
   float: right;
-  text-align: right;
 }
 
-#header-nav .selected {
+#header-nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+#header-nav ul ul {
+  position: absolute;
+}
+
+#header-nav ul li {
+  list-style: none;
+  float: left;
+  width: 120px;
+  margin: 0;
+  line-height: 4.5rem;
+  text-align: center;
+}
+
+
+#header-nav li a {
+  display: block;
+  margin:0;
+  padding:0;
+}
+
+#header-nav li a:hover {
+  color: #a09159;
+}
+
+#header-nav li li {
+  display: none;
+  z-index: 100;
+  background: rgba(0,0,0,0.5);
+  border-bottom: 1px solid #333;
+  float: none;
+}
+
+#header-nav li:hover li {
+  display: block;
+}
+
+#header-nav li li a:hover {
+  background: #000;
+  color: #a09159;
+}
+
+#header-nav .selected a {
   color: #a09159;
 }
 
 #header-titles {
-  padding-top: 8%;
+  padding-top: 12%;
   text-align: center;
 }
 
@@ -112,15 +164,37 @@ h4, h5, h6 {
   text-shadow: 2px 2px 4px #000;
 }
 
-a.btn {
+a.btn-header {
   display: inline-block;
+  background: rgba(0,0,0,0.5);
+  width: 200px;
   border: 1px solid #fff;
   color: #fff;
   padding: 12px;
-  width: 200px;
-  margin: 22px;
+  margin: 7% 22px;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+a.btn-header:hover {
+  background-color: #a09159;
+  color: #000;
+}
+
+a.btn {
+  display: inline-block;
+  background: #bc9814;
+  color: #fff;
+  padding: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-top: 22px;
+}
+
+a.btn:hover {
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #000;
 }
 
 #section-two {
@@ -134,4 +208,10 @@ a.btn {
   width: 50%;
   margin: 0;
   display: inline-block
+}
+
+#section-three {
+  width: 100%;
+  height: 400px;
+  background-color: #000;
 }

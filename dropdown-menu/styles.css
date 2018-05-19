@@ -11,7 +11,6 @@ nav::after {
   display: table;
 }
 ul {
-  display: inline;
   margin: 0;
   padding: 0;
   list-style: none;

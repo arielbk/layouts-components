@@ -2,9 +2,13 @@ body {
   font: 16px Arial, sans-serif;
 }
 nav {
-  text-align: center;
   margin: 0 auto;
   display: inline-block;
+}
+nav::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 ul {
   display: inline;

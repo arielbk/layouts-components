@@ -1,3 +1,5 @@
+/* Flexbox and CSS grid system would be really helpful in this layout, but I want some practice without using them first */
+
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:400,700');
 
@@ -111,7 +113,6 @@ h4, h5, h6 {
 #header-nav ul li {
   list-style: none;
   float: left;
-  width: 120px;
   margin: 0;
   line-height: 4.5rem;
   text-align: center;
@@ -121,7 +122,11 @@ h4, h5, h6 {
 #header-nav li a {
   display: block;
   margin:0;
-  padding:0;
+  padding:0 22px;
+}
+
+#header-nav li.last-li a {
+  padding: 0 0 0 22px;
 }
 
 #header-nav li a:hover {
@@ -197,44 +202,41 @@ a.btn:hover {
   color: #000;
 }
 
-.dark {
+.light-section {
+  color: #000;
+  text-align: center;
+  padding: 44px 0;
+  background: #fff;
+  width: 100%;
+}
+
+.dark-section {
+  color: #fff;
+  text-align: center;
+  padding: 44px 0;
+  background: #000;
+  width: 100%;
+}
+
+.dark-section h4 {
   color: #fff;
 }
 
-.light {
-  color: #000;
+.dark-section .muted {
+  color:;
 }
 
-#section-two {
-  color: #000;
-  text-align: center;
-  padding-top: 44px;
-}
-
-#second-image,
-#second-text {
+.half {
   width: 50%;
   margin: 0;
   display: inline-block
 }
 
-#section-three {
-  text-align: center;
-  padding-top: 44px;
-  width: 100%;
-  height: 400px;
+#img-section-1 {
   background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('../images/photo4.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.dark h4 {
-  color: #fff;
-}
-
-.dark .muted {
-  color:;
 }
 
 .quarter {
@@ -243,5 +245,21 @@ a.btn:hover {
   margin: 0;
   padding: 0;
   width: 25%;
+  display: inline-block;
+}
+
+#img-section-2 {
+  background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('../images/photo5.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.third {
+  vertical-align: top;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 33.333%;
   display: inline-block;
 }

@@ -23,7 +23,7 @@ for(const box of boxes) {
 // Drag functions
 function dragStart() {
   this.className += ' hold';
-  // setTimeout(() => (this.className = 'invisible'), 0);
+  setTimeout(() => (this.className = 'invisible'), 0);
 }
 
 function dragEnd() {

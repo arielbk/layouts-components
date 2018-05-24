@@ -26,6 +26,6 @@
   border-style: dotted;
 }
 
-/* .invisible {
-  opacity: 1;
-} */
+.invisible {
+  display: none;
+}

@@ -20,13 +20,6 @@ body {
   max-width: 1150px;
 }
 
-@media (max-width: 1150px) {
-  .container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
-
 a {
   text-decoration: none;
 }
@@ -204,6 +197,8 @@ a.btn-header:hover {
 }
 
 a.btn {
+  text-align: center;
+  width: 170px;
   display: inline-block;
   background: #bc9814;
   border: 2px solid #bc9814;
@@ -268,6 +263,7 @@ a.btn:hover {
   display: inline-block;
 }
 
+
 .quarter:first-child {
   padding: 0 1.5% 0 0;
 }
@@ -279,7 +275,7 @@ a.btn:hover {
 .enlarge {
   width: 100%;
   text-align: center;
-  font-size: 8em;
+  font-size: 6em;
   margin-bottom: 44px;
 }
 
@@ -312,6 +308,8 @@ a.btn:hover {
   padding: 0 0 0 2%;
 }
 
+
+
 #main-footer {
   background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('../images/photo7.jpg');
   background-position: center;
@@ -320,9 +318,15 @@ a.btn:hover {
   padding: 44px 0 88px 0;
 }
 
+#main-footer .third:first-child {
+  text-align: left;
+}
+
 #footer-icons {
   font-size: 3em;
+  letter-spacing: .3em;
   display: inline-block;
+  width: 100%;
 }
 
 #footer-icons a {
@@ -331,6 +335,10 @@ a.btn:hover {
 
 #footer-icons a:hover {
   color: #777;
+}
+
+#main-footer p.third {
+  font-size: 0.8em;
 }
 
 #footer-nav {
@@ -342,25 +350,87 @@ a.btn:hover {
   padding: 0;
 }
 
-#header-nav ul li {
+#footer-nav ul li {
   list-style: none;
   float: left;
   margin: 0;
   line-height: 4.5rem;
   text-align: center;
+  line-height: 1em;
 }
 
-#header-nav li a {
+#footer-nav li a {
   display: block;
   margin:0;
   padding:0 22px;
   color: #fff;
 }
 
-#header-nav li.last-li a {
+#footer-nav li.last-li a {
   padding: 0 0 0 22px;
 }
 
-#header-nav li a:hover {
+#footer-nav li a:hover {
   color: #a09159;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 870px) {
+  .quarter {
+    width: 50%;
+    margin-top: 44px;
+  }
+  .third {
+    width: 100%;
+    margin-bottom: 34px;
+    text-align: center;
+  }
+  #main-footer .third:first-child {
+    text-align: center;
+  }
+  #footer-nav {
+    display: block;
+    text-align: center;
+    margin-top: 34px;
+  }
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  #footer-icons {
+    font-size: 2em;
+  }
+  #footer-nav li a {
+    padding:0 4px;
+  }
+  #footer-nav li a:last-child {
+    padding: 0 0 0 4px;
+  }
+  #footer-nav li a::before {
+    content: '| ';
+  }
+}
+
+@media (max-width: 700px) {
+  .half {
+    width: 100%;
+    margin-bottom: 34px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .quarter {
+    width: 100%;
+  }
 }

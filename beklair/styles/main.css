@@ -17,7 +17,13 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 1050px;
+  max-width: 1150px;
+}
+
+@media (max-height: 1150px) {
+  .container {
+    padding: 12px;
+  }
 }
 
 a {
@@ -79,7 +85,7 @@ h4, h5, h6 {
 
 #header-icons {
   text-align: right;
-  padding: 11px 0;
+  padding: 11px inherit;
 }
 
 #header-strip {
@@ -205,7 +211,7 @@ a.btn:hover {
 .light-section {
   color: #000;
   text-align: center;
-  padding: 44px 0;
+  padding: 44px inherit;
   background: #fff;
   width: 100%;
 }
@@ -213,7 +219,7 @@ a.btn:hover {
 .dark-section {
   color: #fff;
   text-align: center;
-  padding: 44px 0;
+  padding: 44px inherit;
   background: #000;
   width: 100%;
 }

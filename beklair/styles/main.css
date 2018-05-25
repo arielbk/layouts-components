@@ -7,7 +7,6 @@
 *, *::before, *::after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  transition: 0s;
 }
 
 body {
@@ -22,6 +21,7 @@ body {
 
 a {
   text-decoration: none;
+  transition: 0.2s;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -47,6 +47,7 @@ h4, h5, h6 {
   width: 100%;
   margin-top: 55px;
 }
+
 .clearfix,
 .group::after {
   content: "";
@@ -59,6 +60,7 @@ h4, h5, h6 {
   float: left;
   padding-right: 22px;
 }
+
 .group-right {
   display: inline-block;
   float: right;
@@ -81,15 +83,15 @@ h4, h5, h6 {
 #header-icons {
   text-align: right;
   padding: 11px 0;
-  letter-spacing: 1em;
+  letter-spacing: 1.2em;
 }
 
 #header-icons a {
-  color: #777;
+  color: #fff;
 }
 
 #header-icons a:hover {
-  color: #fff;
+  color: #777;
 }
 
 #header-strip {
@@ -127,7 +129,6 @@ h4, h5, h6 {
   line-height: 4.5rem;
   text-align: center;
 }
-
 
 #header-nav li a {
   display: block;
@@ -371,7 +372,7 @@ a.btn:hover {
 }
 
 #footer-nav li a:hover {
-  color: #a09159;
+  color: #777;
 }
 
 
@@ -409,6 +410,14 @@ a.btn:hover {
   }
   #footer-icons {
     font-size: 2em;
+  }
+  #footer-nav {
+    float: none;
+  }
+  #footer-nav ul {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
   }
   #footer-nav li a {
     padding:0 4px;

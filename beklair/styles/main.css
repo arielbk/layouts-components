@@ -7,7 +7,7 @@
 *, *::before, *::after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  transition: 0.7s;
+  transition: 0s;
 }
 
 body {
@@ -52,7 +52,7 @@ h4, h5, h6 {
 .group {
   text-align: left;
   width: 100%;
-  margin: 66px 0;
+  margin-top: 66px;
 }
 .clearfix,
 .group::after {
@@ -64,15 +64,16 @@ h4, h5, h6 {
 .group-left {
   display: inline-block;
   float: left;
-  padding-right: 12px;
+  padding-right: 22px;
 }
 .group-right {
   display: inline-block;
   float: right;
-  padding-left: 12px;
+  padding-left: 22px;
 }
 
-/* LAYOUT STARTS */
+/* Top to bottom styling starts */
+
 #header-hero {
   /* this is effective because of a CSS quirk in which gradients are treated as another image by the browser, inspired by this article: https://medium.com/@tsmith18256/creating-a-css-image-overlay-with-one-element-205c66100d8f */
   background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/photo1.jpeg');
@@ -205,23 +206,24 @@ a.btn-header:hover {
 a.btn {
   display: inline-block;
   background: #bc9814;
+  border: 2px solid #bc9814;
   color: #fff;
   padding: 12px;
   text-decoration: none;
   text-transform: uppercase;
-  margin-top: 22px;
+  margin-top: 44px;
 }
 
 a.btn:hover {
+  border: 2px solid #eee;
   background: #fff;
-  border: 1px solid #ccc;
   color: #000;
 }
 
 .light-section {
   color: #000;
   text-align: center;
-  padding: 44px 0;
+  padding: 44px 0 88px 0;
   background: #fff;
   width: 100%;
 }
@@ -229,7 +231,7 @@ a.btn:hover {
 .dark-section {
   color: #fff;
   text-align: center;
-  padding: 44px 0;
+  padding: 88px 0;
   background: #000;
   width: 100%;
 }
@@ -255,13 +257,35 @@ a.btn:hover {
   background-repeat: no-repeat;
 }
 
+/* Revisit this and use Flexbox, it is the ideal use case for it */
+
 .quarter {
   vertical-align: top;
   text-align: center;
   margin: 0;
-  padding: 0;
+  padding: 0 1%;
   width: 25%;
   display: inline-block;
+}
+
+.quarter:first-child {
+  padding: 0 1.5% 0 0;
+}
+
+.quarter:last-child {
+  padding: 0 0 0 1.5%;
+}
+
+.enlarge {
+  width: 100%;
+  text-align: center;
+  font-size: 8em;
+  margin-bottom: 44px;
+}
+
+.clients {
+  color: #777;
+  padding: 44px 0;
 }
 
 #img-section-2 {
@@ -278,4 +302,9 @@ a.btn:hover {
   padding: 0;
   width: 33.333%;
   display: inline-block;
+}
+
+footer {
+  background-color: #333;
+  padding: 44px 0;
 }

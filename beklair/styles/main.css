@@ -215,7 +215,7 @@ a.btn {
 }
 
 a.btn:hover {
-  border: 2px solid #eee;
+  border: 2px solid #ddd;
   background: #fff;
   color: #000;
 }
@@ -304,7 +304,23 @@ a.btn:hover {
   display: inline-block;
 }
 
-footer {
-  background-color: #333;
-  padding: 44px 0;
+#main-footer {
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('../images/photo7.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 44px 0 88px 0;
+}
+
+#footer-icons {
+  font-size: 3em;
+  display: inline-block;
+}
+
+#footer-icons a {
+  color: #fff;
+}
+
+#footer-icons a:hover {
+  color: #777;
 }

@@ -52,7 +52,7 @@ h4, h5, h6 {
 .group {
   text-align: left;
   width: 100%;
-  margin-top: 66px;
+  margin-top: 55px;
 }
 .clearfix,
 .group::after {
@@ -299,9 +299,17 @@ a.btn:hover {
   vertical-align: top;
   text-align: center;
   margin: 0;
-  padding: 0;
+  padding: 0 1%;
   width: 33.333%;
   display: inline-block;
+}
+
+.third:first {
+  padding: 0 2% 0 0;
+}
+
+.third:last {
+  padding: 0 0 0 2%;
 }
 
 #main-footer {
@@ -323,4 +331,36 @@ a.btn:hover {
 
 #footer-icons a:hover {
   color: #777;
+}
+
+#footer-nav {
+  float: right;
+}
+
+#footer-nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+#header-nav ul li {
+  list-style: none;
+  float: left;
+  margin: 0;
+  line-height: 4.5rem;
+  text-align: center;
+}
+
+#header-nav li a {
+  display: block;
+  margin:0;
+  padding:0 22px;
+  color: #fff;
+}
+
+#header-nav li.last-li a {
+  padding: 0 0 0 22px;
+}
+
+#header-nav li a:hover {
+  color: #a09159;
 }

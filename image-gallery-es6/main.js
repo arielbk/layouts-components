@@ -40,6 +40,14 @@ function imageCycle(e) {
     var nextId = (currentId + 1) % (singleImage.length);
     imageChanger(singleImage[nextId]);
   }
+
+  // now for the up and down arrow
+  if (e.key =='ArrowUp' && currentId > 3) {
+    imageChanger(singleImage[currentId-4]);
+  } else if (e.key == 'ArrowDown' && currentId < 4) {
+    imageChanger(singleImage[currentId+4]);
+  }
+
 }
 
 // function that actually changes the image

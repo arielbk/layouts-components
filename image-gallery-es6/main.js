@@ -1,3 +1,5 @@
+/* view on http://arielbk.com/gallery */
+
 // this is inspired by a tutorial by Traversy Media: https://www.youtube.com/watch?v=afoxd5b0bJo
 // edited to implement event delegation and aesthetics
 // user can press 1-8 on their keyboard to choose the corresponding image

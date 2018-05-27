@@ -1,7 +1,11 @@
+/* view on http://arielbk.com/gallery */
+
 body {
   margin: 20px;
   padding: 0;
   background: #111;
+  color: #111;
+  text-align: center;
 }
 
 * {
@@ -9,7 +13,7 @@ body {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 700px;
   width: 80%;
   margin: auto;
   border: solid white 3px;

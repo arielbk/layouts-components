@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple CSS Spinners</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main">
+  <h1>Hello, this is a site</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non cumque earum error praesentium molestias, quam sint minus accusamus voluptas, ad enim quidem natus beatae. Soluta ea placeat laudantium fugiat deleniti minima repudiandae facere quia voluptas illum exercitationem, in, consequuntur harum deserunt animi iste aspernatur non neque! Alias veniam, quo sunt.
+  </p>
+</div>
+<!-- script will just wait four seconds while the spinner runs,
+after four seconds the spinner will disappear and the paragraph appears -->
+<script>
+  document.querySelector('.main p').style.display = 'none';
+  document.querySelector('.main').classList.add('spinner-3');
+
+  setTimeout(() => {
+    document.querySelector('.main p').style.display = 'block';
+    document.querySelector('.main').classList.remove('spinner-3');
+  }, 4000);
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0 44px;
+}
+
+.btn {
+  width: 140px;
+  display: inline-block;
+  background: #333;
+  color: #eee;
+  text-decoration: none;
+  padding: 0.8em;
+  margin: 12px 0;
+  text-align: center;
+}
+
+#textInput {
+  width: 500px;
+}
+
+#submit {
+  display: block;
+}

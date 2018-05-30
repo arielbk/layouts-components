@@ -16,6 +16,13 @@ body {
   padding: 0.8em;
   margin: 12px 0;
   text-align: center;
+  border: 1px solid #333;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: #fff;
+  color: #333;
 }
 
 #textInput {

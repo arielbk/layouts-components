@@ -14,10 +14,25 @@
   <h3>
     Type or paste some text below and list the frequency of every word!
   </h3>
-  <textarea id="textInput"></textarea>
-  <a href="#" id="submit" class="btn">Submit</a>
+    <form class="main-form">
+      <textarea id="text-input"></textarea>
+      <span id="number-chooser">
+        Display top <input type="number" id="top-number" value="10"> words
+      </span>
+      <a href="#" id="submit" class="btn">Submit</a>
+    </form>
 
-  <ul id='output'></ul>
+  <table id="output-table">
+    <thead>
+      <tr>
+        <th id="table-number">#</th>
+        <th id="table-word">Word</th>
+        <th id="table-frequency">Frequency</th>
+      </tr>
+    </thead>
+    <tbody id="output">
+    </tbody>
+  </table>
 
   <script src="main.js"></script>
 </body>

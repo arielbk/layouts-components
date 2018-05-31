@@ -19,7 +19,7 @@ h3 {
   color: #eee;
   text-decoration: none;
   padding: 0.8em;
-  margin: 22px 0;
+  margin: 44px 22px 0;
   text-align: center;
   border: 1px solid #333;
   transition: .3s;
@@ -32,7 +32,8 @@ h3 {
 
 .main-form {
   width: 100%;
-  text-align: right;
+  text-align: center;
+  margin: 66px 0;
 }
 
 #text-input {
@@ -45,7 +46,6 @@ h3 {
 }
 
 #number-chooser {
-  margin-right: 22px;
   font-size: 1.6em;
 }
 
@@ -70,15 +70,21 @@ th, td {
   text-align: center;
 }
 
-th:last-child,
-td:last-child {
-  text-align: right;
-}
-
 #table-word {
   width: 80%;
 }
 
+tr {
+  background-color: #fefefe;
+}
+
 tr:nth-child(even) {
   background-color: #eee;
+}
+
+tbody tr:last-child td {
+  font-size: 1.4em;
+  font-style: italic;
+  text-align: right;
+  padding: 22px 12px;
 }

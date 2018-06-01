@@ -19,6 +19,7 @@
 
 .hold {
   border: 4px solid lightgrey;
+  transform: rotate(20deg);
 }
 
 .hovered {

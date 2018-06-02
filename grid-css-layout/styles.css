@@ -1,0 +1,10 @@
+/* Following along with Traversy Media Tutorial */
+
+/* CSS Variables (I've been itching to use these...) */
+/* These can be used throughout the styles (:root) */
+:root {
+  --primary: #ddd;
+  --dark: #333;
+  --light: #fff;
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}

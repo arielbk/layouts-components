@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     skew = 1000;
   }
 
-  wrapper.addEventListener('mousemove', function(e) {
+  wrapper.addEventListener('mousemove', function (e) {
     delta = (e.clientX - window.innerWidth / 2) * 0.5;
 
     handle.style.left = e.clientX + delta + 'px';

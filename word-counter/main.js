@@ -43,11 +43,9 @@ submitBtn.addEventListener('click', () => {
   // build the table content
   for (let i=0; i<words.length && i<n; i++) {
     if (words[i].word)
-      content += '<tr><td>'+(i+1)+'</td>';
-      content += '<td>'+words[i].word+'</td>';
-      content += '<td>'+words[i].frequency+'</td></tr>'
+      content += `<tr><td>${i+1}</td><td>${words[i].word}</td><td>${words[i].frequency}</td></tr>`
   }
-  content += '<tfoot><tr><td colspan="3">Total words: '+numWords+' | Total unique words: '+words.length+'</td></tr></tfoot>';
+  content += `<tfoot><tr><td colspan="3">Total words: ${numWords} | Total unique words: ${words.length}</td></tr></tfoot>`;
   // display output
   output.innerHTML = content;
   outputTable.style.display = 'table';

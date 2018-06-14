@@ -40,6 +40,7 @@ function DateFact(props) {
       <p>
         {props.fact}
       </p>
+      <button onClick={props.onFetchFact}>Another Fact</button>
     </div>
   )
 }
@@ -56,38 +57,44 @@ class App extends Component {
     }
     this.handleMonthChange = this.handleMonthChange.bind(this);
     this.handleDayChange = this.handleDayChange.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleFetchFact = this.handleFetchFact.bind(this);
     this.handleSetToday = this.handleSetToday.bind(this);
   }
 
   componentDidMount() {
-    this.handleDateChange();
+    this.handleFetchFact();
   }
 
   handleMonthChange(e) {
     this.setState({ month: Number(e.target.value) });
-    this.handleDateChange();
+    this.handleFetchFact(); // problem with the fact being fetched before state actually changes
+    //because of asynchronous setState?
   }
 
   handleDayChange(e) {
     this.setState({ day: e.target.value });
-    this.handleDateChange();
+    this.handleFetchFact();
   }
   
-  handleDateChange() {
+  handleFetchFact() {
     console.groupCollapsed('fetching');
-    console.count('fetch');
     console.time('fetch data');
+    console.log(this.state.day, this.state.month);
     if (!this.state.loading) this.setState({ loading: true });
     fetch(`http://numbersapi.com/${this.state.month}/${this.state.day}/date`)
       .then(res => res.text())
       .then(data => {
-        this.setState({ 
-          fact: data,
-          loading: false,
-        });
+        if (this.state.fact !== data) {
+          this.setState({ 
+            fact: data,
+            loading: false
+          })
+        } else {
+          this.handleFetchFact();
+        }
       });
     console.timeEnd('fetch data');
+    console.log(this.state.day, this.state.month);
     console.groupEnd('fetching');
   }
 
@@ -100,7 +107,7 @@ class App extends Component {
       month: nowMonth,
       day: nowDay,
     });
-    this.handleDateChange();
+    this.handleFetchFact();
   }
 
   render() {
@@ -116,7 +123,10 @@ class App extends Component {
         />
         { this.state.loading === true
           ? <Loading />
-          : <DateFact fact={this.state.fact} />
+          : <DateFact 
+            fact={this.state.fact} 
+            onFetchFact={this.handleFetchFact}
+          />
         }
       </div>
     );

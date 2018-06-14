@@ -1,0 +1,1 @@
+Made with create-react-app, a way to practice developing and deploying a React app.

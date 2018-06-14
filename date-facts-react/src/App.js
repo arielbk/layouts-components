@@ -25,8 +25,8 @@ function DatePicker(props) {
           <option value='11'>November</option>
           <option value='12'>December</option>
         </select>
-        <input type='Number' min='1' max='31' value={props.day} onChange={props.onDayChange} />
-        <h2> or </h2>
+        <input value={props.day} onChange={props.onDayChange} type='Number' min='1' max='31' />
+        <h2> or use </h2>
         <button onClick={props.onSetToday}>Today's date</button>
       </form>
     </div>
@@ -65,28 +65,34 @@ class App extends Component {
   }
 
   handleMonthChange(e) {
-    const month = e.target.value;
-    this.setState({month});
+    this.setState({ month: Number(e.target.value) });
     this.handleDateChange();
   }
 
   handleDayChange(e) {
-    const day = e.target.value;
-    this.setState({day});
+    this.setState({ day: e.target.value });
     this.handleDateChange();
   }
   
   handleDateChange() {
-    this.setState({ loading: true });
+    console.groupCollapsed('fetching');
+    console.count('fetch');
+    console.time('fetch data');
+    if (!this.state.loading) this.setState({ loading: true });
     fetch(`http://numbersapi.com/${this.state.month}/${this.state.day}/date`)
       .then(res => res.text())
       .then(data => {
-        this.setState({ fact: data });
+        this.setState({ 
+          fact: data,
+          loading: false,
+        });
       });
-    this.setState({ loading: false });
+    console.timeEnd('fetch data');
+    console.groupEnd('fetching');
   }
 
-  handleSetToday() {
+  handleSetToday(e) {
+    e.preventDefault();
     const nowDate = new Date();
     const nowMonth = nowDate.getMonth()+1;
     const nowDay = nowDate.getDate();
@@ -102,17 +108,16 @@ class App extends Component {
       <div className='App'>
         <h1 className='container'>On this date...</h1>
         <DatePicker
-          month={this.state.month} 
-          day={this.state.day} 
           onMonthChange={this.handleMonthChange} 
           onDayChange={this.handleDayChange}
           onSetToday={this.handleSetToday}
+          month={this.state.month} 
+          day={this.state.day} 
         />
         { this.state.loading === true
           ? <Loading />
           : <DateFact fact={this.state.fact} />
         }
-        
       </div>
     );
   }

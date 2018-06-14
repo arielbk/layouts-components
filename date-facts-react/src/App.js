@@ -27,7 +27,7 @@ function DatePicker(props) {
         </select>
         <input value={props.day} onChange={props.onDayChange} type='Number' min='1' max='31' />
         <h2> or use </h2>
-        <button onClick={props.onSetToday}>Today's date</button>
+        <button onClick={props.onSetToday}>Today&#39;s date</button>
       </form>
     </div>
   )

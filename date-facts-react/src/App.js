@@ -66,20 +66,14 @@ class App extends Component {
   }
 
   handleMonthChange(e) {
-    this.setState({ month: Number(e.target.value) });
-    this.handleFetchFact(); // problem with the fact being fetched before state actually changes
-    //because of asynchronous setState?
+    this.setState({ month: e.target.value }, () => this.handleFetchFact());
   }
 
   handleDayChange(e) {
-    this.setState({ day: e.target.value });
-    this.handleFetchFact();
+    this.setState({ day: e.target.value }, () => this.handleFetchFact());
   }
   
   handleFetchFact() {
-    console.groupCollapsed('fetching');
-    console.time('fetch data');
-    console.log(this.state.day, this.state.month);
     if (!this.state.loading) this.setState({ loading: true });
     fetch(`http://numbersapi.com/${this.state.month}/${this.state.day}/date`)
       .then(res => res.text())
@@ -93,9 +87,6 @@ class App extends Component {
           this.handleFetchFact();
         }
       });
-    console.timeEnd('fetch data');
-    console.log(this.state.day, this.state.month);
-    console.groupEnd('fetching');
   }
 
   handleSetToday(e) {

@@ -3,27 +3,44 @@
 import React from 'react';
 
 function Output(props) {
-  let content = '';
-  props.topWords.forEach(word => content += (<tr><td>yes</td></tr>));
 
-  console.log(content);
+  // thanks to this medium article by Quynh Nhu To Tuan: https://blog.cloudboost.io/for-loops-in-react-render-no-you-didnt-6c9f4aa73778
+  let produceContent = () => {
+    let table = [];
 
+    // outer loop for parent tr
+    for (let i = 0; i < props.numWords && i < props.wordsToShow; i++) {
+
+      table.push(
+        <tr key={props.topWords[i].word}>
+          <td>{i+1}</td>
+          <td>{props.topWords[i].word}</td>
+          <td>{props.topWords[i].frequency}</td>
+        </tr>
+      );
+
+    }
+    return table;
+  }
+  
   return (
-    
   <table className="output-table">
-  <thead>
-    <tr>
-      <th className="table-number">#</th>
-      <th className="table-word">Word</th>
-      <th className="table-frequency">Frequency</th>
-    </tr>
-  </thead>
-  <tbody className="output">
+    <thead>
+      <tr>
+        <th className="table-number">#</th>
+        <th className="table-word">Word</th>
+        <th className="table-frequency">Frequency</th>
+      </tr>
+    </thead>
+    <tbody className="output">
 
-    {content}
+      {produceContent()}
 
-  </tbody>
-</table>
+    </tbody>
+
+    <tfoot><tr><td colSpan="3">Total words: {props.numWords} | Total unique words: {props.topWords.length}</td></tr></tfoot>
+
+  </table>
   )
 }
 

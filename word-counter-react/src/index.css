@@ -91,9 +91,9 @@ tr:nth-child(even) {
   background-color: #eee;
 }
 
-tbody tr:last-child td {
+tfoot tr td {
   font-size: 1.4em;
   font-style: italic;
-  text-align: right;
+  text-align: center;
   padding: 22px 12px;
 }

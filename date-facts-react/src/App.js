@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 function Loading(props) {
   return (
-    <h3>Loading...</h3>
+    <div className='loading-spinner' />
   )
 }
 
 function DatePicker(props) {
   return (
     <div className='container date-picker'>
-      <h2>Pick a date:</h2>
+      <h2>Pick a date</h2>
       <form className='date-picker-form'>
         <select value={props.month} onChange={props.onMonthChange}>
           <option value='1'>January</option>
@@ -25,9 +25,41 @@ function DatePicker(props) {
           <option value='11'>November</option>
           <option value='12'>December</option>
         </select>
-        <input value={props.day} onChange={props.onDayChange} type='Number' min='1' max='31' />
-        <h2> or use </h2>
-        <button onClick={props.onSetToday}>Today&#39;s date</button>
+        <select value={props.day} onChange={props.onDayChange}>
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3'>3</option>
+          <option value='4'>4</option>
+          <option value='5'>5</option>
+          <option value='6'>6</option>
+          <option value='7'>7</option>
+          <option value='8'>8</option>
+          <option value='9'>9</option>
+          <option value='10'>10</option>
+          <option value='11'>11</option>
+          <option value='12'>12</option>
+          <option value='13'>13</option>
+          <option value='14'>14</option>
+          <option value='15'>15</option>
+          <option value='16'>16</option>
+          <option value='17'>17</option>
+          <option value='18'>18</option>
+          <option value='19'>19</option>
+          <option value='20'>20</option>
+          <option value='21'>21</option>
+          <option value='22'>22</option>
+          <option value='23'>23</option>
+          <option value='24'>24</option>
+          <option value='25'>25</option>
+          <option value='26'>26</option>
+          <option value='27'>27</option>
+          <option value='28'>28</option>
+          <option value='29'>29</option>
+          <option value='30'>30</option>
+          <option value='31'>31</option>
+        </select>
+        <br />
+        <button className='btn-today' onClick={props.onSetToday}>Today&#39;s Date</button>
       </form>
     </div>
   )
@@ -40,7 +72,7 @@ function DateFact(props) {
       <p>
         {props.fact}
       </p>
-      <button onClick={props.onFetchFact}>Another Fact</button>
+      <button className='btn-another' onClick={props.onFetchFact}>Another Fact</button>
     </div>
   )
 }
@@ -54,11 +86,13 @@ class App extends Component {
       day: nowDate.getDate(),
       fact: '',
       loading: true,
+      colour: 212,
     }
     this.handleMonthChange = this.handleMonthChange.bind(this);
     this.handleDayChange = this.handleDayChange.bind(this);
     this.handleFetchFact = this.handleFetchFact.bind(this);
     this.handleSetToday = this.handleSetToday.bind(this);
+    this.changeBackgrounds = this.changeBackgrounds.bind(this);
   }
 
   componentDidMount() {
@@ -101,9 +135,16 @@ class App extends Component {
     this.handleFetchFact();
   }
 
+  changeBackgrounds() {
+    let html = document.querySelector('body');
+    html.style = `--navy: hsla(${this.state.colour}, 40%, 22%);`;
+    let colour = this.state.colour+2;
+    this.setState({colour});
+  }
+
   render() {
     return (
-      <div className='App'>
+      <div className='App' onMouseMove={this.changeBackgrounds}>
         <h1 className='container'>On this date...</h1>
         <DatePicker
           onMonthChange={this.handleMonthChange} 

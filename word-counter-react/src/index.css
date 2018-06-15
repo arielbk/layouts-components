@@ -48,6 +48,7 @@ h3 {
   border: 1px solid #333;
   font-size: 1em;
   padding: 1em;
+  transition: .5s;
 }
 
 .number-chooser {

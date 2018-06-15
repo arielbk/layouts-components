@@ -64,6 +64,12 @@ h3 {
   text-align:right;
 }
 
+.text-input:focus,
+.number-choose input:focus {
+  border: 2px solid #080;
+  outline: none;
+}
+
 .output-table {
   margin: 44px 0;
   width: 100%;

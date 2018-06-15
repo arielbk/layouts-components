@@ -9,7 +9,13 @@ function Output(props) {
     let table = [];
 
     // outer loop for parent tr
-    for (let i = 0; i < props.numWords && i < props.wordsToShow; i++) {
+    for (let i = 0; i < props.topWords.length && i < props.wordsToShow; i++) {
+
+      if (!props.topWords[i]) {
+        console.table(props.topWords);
+        console.log(i);
+        return;  
+      }
 
       table.push(
         <tr key={props.topWords[i].word}>

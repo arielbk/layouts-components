@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   updateTopWords() {
-
     let numWords = 0;
 
     const words = this.state.textInput
@@ -28,7 +27,9 @@ class App extends Component {
       .map(x => x.replace(/[^a-z]/gi, ''))
       // create an array of objects with the word and its frequency
       .reduce((totalWords, singleWord) => {
-        if (totalWords.every(element => element['word'] !== singleWord)) {
+        if (!singleWord){ // removes trailing space problems...
+          return totalWords
+        } else if (totalWords.every(element => element['word'] !== singleWord)) {
           const newElement = {word: singleWord, frequency: 1};
           totalWords.push(newElement);
           numWords++;

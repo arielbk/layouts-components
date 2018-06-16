@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ControlBar from './Components/ControlBar';
 import Output from './Components/Output';
+import GitHub from './Components/GitHub';
 
 class App extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class App extends Component {
       <div className="container">
         <h1>Word Counter</h1>
         <h3>Type or paste some text below and list the frequency of each word!</h3>
+        <GitHub />
         <textarea 
         className='text-input' 
         value={this.state.textInput} 

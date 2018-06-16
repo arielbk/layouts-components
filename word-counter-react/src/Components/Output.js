@@ -8,7 +8,7 @@ function Output(props) {
   let produceContent = () => {
     let table = [];
 
-    // outer loop for parent tr
+    // outer loop for every parent <tr>
     for (let i = 0; i < props.topWords.length && i < props.wordsToShow; i++) {
 
       if (!props.topWords[i]) {
@@ -17,6 +17,7 @@ function Output(props) {
         return;  
       }
 
+      // populate
       table.push(
         <tr key={props.topWords[i].word}>
           <td>{i+1}</td>

@@ -18,10 +18,12 @@ class App extends Component {
   }
 
   updateTopWords() {
+    // keep track of total number of words (i.e. not just unique words)
+    // this is just so that a whole other calculation need not be made at the end
     let numWords = 0;
 
     const words = this.state.textInput
-      // this is where the magic happens: chained array methods
+      // the beauty of chained array methods
       .toLowerCase()
       .split(' ')
       // remove all non alpha characters and increment words counter on each pass
@@ -30,10 +32,12 @@ class App extends Component {
       .reduce((totalWords, singleWord) => {
         if (!singleWord){ // removes trailing space problems...
           return totalWords
+          // creates a new entry with a frequency of 1 if the word does not yet exist
         } else if (totalWords.every(element => element['word'] !== singleWord)) {
           const newElement = {word: singleWord, frequency: 1};
           totalWords.push(newElement);
           numWords++;
+          // if the word is already there, then increment its frequency
         } else {
           totalWords.forEach(element => {if (element.word === singleWord) element.frequency++});
           numWords++;

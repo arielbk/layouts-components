@@ -1,4 +1,5 @@
 // this is just a little transparent link box to the GitHub repo of the project
+// links to font awesome icon for github, this is linked through the cdn in index.html
 
 import React from 'react';
 import '../css/github.css';

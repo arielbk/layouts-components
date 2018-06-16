@@ -1,11 +1,22 @@
+// Most of the components for this project are in this file (apart from the GitHub link)
+// They all have headers so you can easily find them
+
 import React, { Component } from 'react';
 import GitHub from './Components/GitHub';
+
+/*------------------------------------------------------------------------------------------
+                                                          LOADING COMPONENT
+------------------------------------------------------------------------------------------*/
 
 function Loading(props) {
   return (
     <div className='loading-spinner' />
   )
 }
+
+/*------------------------------------------------------------------------------------------
+                                                          DATEPICKER COMPONENT
+------------------------------------------------------------------------------------------*/
 
 function DatePicker(props) {
   return (
@@ -57,7 +68,8 @@ function DatePicker(props) {
           <option value='28'>28</option>
           <option value='29'>29</option>
           <option value='30'>30</option>
-          <option value='31'>31</option>
+          <option value='31'>31</option> 
+          {/* ^ There is surely a better way to do this ;) will come back to it ^ */}
         </select>
         <br />
         <button className='btn-today' onClick={props.onSetToday}>Today&#39;s Date</button>
@@ -65,6 +77,10 @@ function DatePicker(props) {
     </div>
   )
 }
+
+/*------------------------------------------------------------------------------------------
+                                                          DATEFACT COMPONENT
+------------------------------------------------------------------------------------------*/
 
 function DateFact(props) {
   return (
@@ -77,6 +93,10 @@ function DateFact(props) {
     </div>
   )
 }
+
+/*------------------------------------------------------------------------------------------
+                                                          APP COMPONENT
+------------------------------------------------------------------------------------------*/
 
 class App extends Component {
   constructor(props) {
@@ -96,14 +116,20 @@ class App extends Component {
     this.changeBackgrounds = this.changeBackgrounds.bind(this);
   }
 
+  // Uses the componentDidMount lifecycle method to immediately fetch a fact
+  // when the page loads, with the default state (today's date)
   componentDidMount() {
     this.handleFetchFact();
   }
 
+  // This little pattern had me stuck for a little while
+  // setState is asynchronous, and only happens after the function is complete
+  // for a function to run AFTER setState, this pattern is necessary
   handleMonthChange(e) {
     this.setState({ month: e.target.value }, () => this.handleFetchFact());
   }
 
+  // same thing ^
   handleDayChange(e) {
     this.setState({ day: e.target.value }, () => this.handleFetchFact());
   }
@@ -124,6 +150,8 @@ class App extends Component {
       });
   }
 
+  // e.preventDefault is necessary because the function is called by a button in a form
+  // without this, the form will submit, effectively refreshing the page
   handleSetToday(e) {
     e.preventDefault();
     const nowDate = new Date();
@@ -136,6 +164,8 @@ class App extends Component {
     this.handleFetchFact();
   }
 
+  // this is a little trick inspired by Wes Bos - it uses CSS3 colour (hsla) and CSS variables
+  // CSS variables can be altered LIVE in the dom - lots of possibilies with that
   changeBackgrounds() {
     let html = document.querySelector('body');
     html.style = `--navy: hsla(${this.state.colour}, 40%, 22%);`;

@@ -56,25 +56,27 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Word Counter</h1>
-        <h3>Type or paste some text below and list the frequency of each word!</h3>
+      <div>
+        <div className="container">
+          <h1>Word Counter</h1>
+          <h3>Type or paste some text below and list the frequency of each word!</h3>
+          <textarea 
+          className='text-input' 
+          value={this.state.textInput} 
+          onChange={this.handleTextInput}
+          />
+          <ControlBar 
+          onWordsToShowChange={this.handleWordsToShowChange}
+          wordsToShowValue={this.state.wordsToShow}
+          onSubmit={this.handleSubmit}
+          />
+          <Output 
+            wordsToShow={this.state.wordsToShow}
+            numWords={this.state.numWords}
+            topWords={this.state.topWords}
+          />
+        </div>
         <GitHub />
-        <textarea 
-        className='text-input' 
-        value={this.state.textInput} 
-        onChange={this.handleTextInput}
-        />
-        <ControlBar 
-        onWordsToShowChange={this.handleWordsToShowChange}
-        wordsToShowValue={this.state.wordsToShow}
-        onSubmit={this.handleSubmit}
-        />
-        <Output 
-          wordsToShow={this.state.wordsToShow}
-          numWords={this.state.numWords}
-          topWords={this.state.topWords}
-        />
       </div>
     );
   }

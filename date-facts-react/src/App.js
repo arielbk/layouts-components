@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GitHub from './Components/GitHub';
 
 function Loading(props) {
   return (
@@ -144,6 +145,7 @@ class App extends Component {
 
   render() {
     return (
+      <div>
       <div className='App' onMouseMove={this.changeBackgrounds}>
         <h1 className='container'>On this date...</h1>
         <DatePicker
@@ -160,6 +162,8 @@ class App extends Component {
             onFetchFact={this.handleFetchFact}
           />
         }
+      </div>
+      <GitHub />
       </div>
     );
   }

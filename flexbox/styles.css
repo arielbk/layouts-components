@@ -1,0 +1,74 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin:0;
+  padding: 0;
+}
+
+body {
+  background: #010101;
+  transition:10s;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex: 1 1 500px;
+  flex-direction: row-reverse;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: #fff;
+  font-family: sans-serif;
+  transition: 2s ease-in-out;
+  transform: rotate(10deg);
+  filter: blur(55px);
+}
+
+.flip {
+  transform: rotate(77deg);
+  filter: blur(77px);
+  height:110vh;
+  width: 110vh;
+  margin-left: 30vh;
+}
+
+.stripe {
+  width: 100%;
+  overflow: visible;
+  box-shadow: 5px 15px 70px #000;
+}
+
+#stripe0 {
+  background: #456789;
+}
+
+
+#stripe1 {
+  background: #553399;
+}
+
+
+#stripe2 {
+  background: #6fc08a;
+}
+
+
+#stripe3 {
+  background: #ff92f6;
+}
+
+
+#stripe5 {
+  background: #e0f00b;
+}
+
+
+#stripe4 {
+  background: #14ac00;
+}
+
+#stripe6 {
+  background: #ff2121;
+}

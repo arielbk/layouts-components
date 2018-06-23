@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Flexbox Playaround</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- <div class="stripe" id="stripe0"><h1 contenteditable="true">Testing the text</h1></div>
+    <div class="stripe" id="stripe1"></div>
+    <div class="stripe" id="stripe2"></div>
+    <div class="stripe" id="stripe3"></div> -->
+    <div class="stripe" id="stripe4"></div>
+    <div class="stripe" id="stripe5"></div>
+    <div class="stripe" id="stripe6"></div>
+  </div>
+
+  <script>
+    
+  const container = document.querySelector('.container');
+
+  container.addEventListener('click', () => {
+    if (container.classList.contains('flip')) {
+      container.classList.remove('flip')
+    } else {
+      container.classList.add('flip')
+    }
+    
+  })
+
+  const stripe = document.querySelectorAll('.stripe');
+  const walk = 50; //100px
+
+  function shadow(e) {
+    // const width = hero.offsetWidth;
+    // const height = hero.offsetHeight;
+    // ES6 Destructuring: 
+    const { offsetWidth: width, offsetHeight: height } = stripe;
+    let { offsetX: x, offsetY: y } = e;
+
+    if (this !== e.target) {
+      x = x + e.target.offsetLeft;
+      y = y + e.target.offsetTop;
+    }
+    console.log(x,y);
+
+    // if walk was 100 then x range would be -50 to 50
+    const xWalk = Math.round((x / width * walk) - (walk / 2));
+    const yWalk = Math.round((y / height * walk) - (walk / 2));
+
+    stripe.forEach(function(stripe) {
+      stripe.style.boxShadow = 
+        `${xWalk+100}px ${yWalk+300}px 0 rgb(50,50,50.5),
+        ${xWalk+50}px ${Number(yWalk)+100}px 0 rgb(50,190,50.5),
+        ${xWalk-20}px ${Number(yWalk)-20}px 0 rgba(0,0,0,0.1)`
+      });
+  }
+
+  body.addEventListener('mousemove', shadow);
+
+
+  </script>
+</body>
+</html>

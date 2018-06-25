@@ -44,9 +44,9 @@ function setTimerLength() {
 
 // issue here when user has timer running and presses reset then sets a new time and starts timer...
 function resetTimer() {
+  if (timerObj.timing) startPause(timerObj);
   timerObj.started = false;
   startButton.innerText = 'Start';
-  timerObj.timing = false;
   timerObj.length = inputTime.value * 60;
   timerObj.timeRemaining = timerObj.length;
   displayTime.innerText = '';

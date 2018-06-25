@@ -11,7 +11,17 @@
 
   <div class="main">
     <p>Playing with some JS and CSS to get this Pomodoro timer going</p>
-    <button class="countdown">Begin Timer</button>
+    <select name="time" id="input-time">
+      <option value="5">5 minutes</option>
+      <option value="10">10 minutes</option>
+      <option value="15">15 minutes</option>
+      <option value="20">20 minutes</option>
+      <option value="25" selected>25 minutes</option>
+      <option value="30">30 minutes</option>
+      <option value="35">35 minutes</option>
+    </select>
+    <button class="countdown">Start</button>
+    <button class="reset">Reset</button>
     <h1 class="display-time"></h1>
   </div>
 

@@ -1,9 +1,6 @@
-// Next up:
-//
-// Make it look cool! Circular and graphic
-//
+// PROBLEM OCCURRING WHEN TIMER FINISHES -- NOTHING WORKS
 
-// target all required elements
+// TARGET ELEMENTS
 const container = document.querySelector('.main');
 const startButton = document.querySelector('.countdown');
 const inputTimeWork = document.querySelector('.input-time-work');
@@ -11,10 +8,11 @@ const inputTimeBreak = document.querySelector('.input-time-break');
 const reset = document.querySelector('.reset');
 const displayTime = document.querySelector('.display-time');
 
-// timer object with data for both the work and break timer
+
+// TIMER OBJECT WITH WORK AND BREAK SUB OBJECTS
 const timerObj = {
   // boolean - is the break timer currently active?
-  break: true,
+  breakTime: false,
 
   work: {
     length: 15, // 25*60 --- 25 minutes is default
@@ -25,10 +23,13 @@ const timerObj = {
   break: {
     length: 300,
     timeRemaining: 300,
-    timing: false,
-    started: false,  
+    timing: false, // timing controlled by start/stop
+    started: false, // controls whether choosing a new time will take effect
   }
 }
+
+
+// FUNCTIONS
 
 // timer function called every second while timer is on
 function timerFunc(timer) { // timer passed in is EITHER the work or break timer object
@@ -41,42 +42,22 @@ function timerFunc(timer) { // timer passed in is EITHER the work or break timer
 
     timer.timeRemaining--;
   } else { // otherwise toggle work/break and display option to user
+    resetTimer();
     displayTime.innerText = 'Complete';
-    timerObj.break ? startButton.innerText = 'Start Work' : startButton.innerText = 'Start Break';
+    timerObj.breakTime ? startButton.innerText = 'Start Work' : startButton.innerText = 'Start Break';
+
+    // toggle whether it is breaktime or not
+    timerObj.breakTime = !timerObj.breakTime;
+
+    // NEED TO SET TIME HERE AGAIN FOR THE NEXT RUN - RESET TIMER RESET THE OLD TIMER...
   }
 }
 
-let intervalID;
-function startPause(timerObj) {
-  if (timerObj.break) {
-    timer = timerObj.break;
-    displayTime.style.color = 'rgb(0, 120, 0)';
-  } else {
-    timer = timerObj.work;
-    displayTime.style.color = 'rgb(143,0,0';
-  }
-  timer.started = true;
-  timer.timing = !timer.timing;
-  if (timer.timing) { // if the timer is now running (after click)
-    intervalID = setInterval(() => timerFunc(timer), 1000);
-    startButton.innerText = 'Pause';
-  } else {
-    clearInterval(intervalID);
-    startButton.innerText = 'Continue';
-    return;
-  }
-}
-
-function setTimerLength() {
-  timerObj.length = this.value * 60;
-  if (timerObj.started === false) timerObj.timeRemaining = timerObj.length;
-}
-
+// when reset button is pushed or after time runs out
 function resetTimer() {
-  timerObj.break ? timer = timerObj.break : timer = timerObj.work;
+  timerObj.breakTime ? timer = timerObj.break : timer = timerObj.work;
 
-  
-  if (timer.timing) startPause(timerObj);
+  if (timer.timing) startPause(timerObj); // so that timer does not continue to run in bg
   timer.started = false;
   startButton.innerText = 'Start';
 
@@ -91,7 +72,39 @@ function resetTimer() {
   displayTime.innerText = '';
 }
 
+// this function takes care of running timer function and displaying time and timer.timing
+let intervalID;
+function startPause(timerObj) {
+
+  // break or work?
+  if (timerObj.breakTime) {
+    timer = timerObj.break;
+    displayTime.style.color = 'rgb(0, 120, 0)';
+  } else {
+    timer = timerObj.work;
+    displayTime.style.color = 'rgb(143,0,0';
+  }
+
+  timer.started = true; // hmm is this always right? calling it from other functions?
+  timer.timing = !timer.timing; // toggle whether timing with start and pause
+
+  if (timer.timing) { // if the timer is now running (after click)
+    intervalID = setInterval(() => timerFunc(timer), 1000);
+    startButton.innerText = 'Pause'; // begin timer and display green pause button
+  } else {
+    clearInterval(intervalID);
+    startButton.innerText = 'Continue'; // i.e. timer is paused
+  }
+}
+
+function setTimerLength(timer) {
+  timer.length = this.value * 60;
+  if (!timer.started) timerObj.timeRemaining = timerObj.length;
+}
+
+
+// EVENT LISTENERS
 startButton.addEventListener('click', () => startPause(timerObj));
-inputTimeWork.addEventListener('change', setTimerLength);
-inputTimeBreak.addEventListener('change', setTimerLength);
+inputTimeWork.addEventListener('change', () => setTimerLength(timerObj.work));
+inputTimeBreak.addEventListener('change', () => setTimerLength(timerObj.break));
 reset.addEventListener('click', resetTimer);

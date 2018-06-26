@@ -8,7 +8,7 @@ body {
 select {
   background: #fff;
   padding: 3em;
-  font-size: 2.3em;
+  font-size: 1.5em;
 }
 
 button {
@@ -22,7 +22,7 @@ button {
 }
 
 button:hover {
-  background: rgb(0, 151, 0);
+  background: rgb(0, 120, 0);
   color: #fff;
   cursor: pointer;
 }
@@ -36,4 +36,12 @@ button.reset {
 button.reset:hover {
   background: rgb(143, 0, 0);
   color: #fff;
+}
+
+.period-select {
+  margin: 22px;
+}
+
+h1.display-break {
+  color: rgb(0, 120, 0);
 }

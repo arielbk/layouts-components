@@ -1,4 +1,4 @@
-// PROBLEM OCCURRING WHEN TIMER FINISHES -- NOTHING WORKS
+// PROBLEM OCCURRING WHEN TIMER FINISHES AND USER RESETS... SOMETIMES IT DOES NOT RESPOND -- TROUBLESHOOTING REQUIRED
 
 // TARGET ELEMENTS
 const container = document.querySelector('.main');
@@ -41,15 +41,19 @@ function timerFunc(timer) { // timer passed in is EITHER the work or break timer
     if (secsRemaining) displayTime.innerText += ` ${secsRemaining} seconds`;
 
     timer.timeRemaining--;
-  } else { // otherwise toggle work/break and display option to user
-    resetTimer();
+  } else { // similar to reset timer but with some necessary differences
+    clearInterval(intervalID);
     displayTime.innerText = 'Complete';
     timerObj.breakTime ? startButton.innerText = 'Start Work' : startButton.innerText = 'Start Break';
 
     // toggle whether it is breaktime or not
     timerObj.breakTime = !timerObj.breakTime;
 
-    // NEED TO SET TIME HERE AGAIN FOR THE NEXT RUN - RESET TIMER RESET THE OLD TIMER...
+    // reset all values
+    timerObj.work.length = inputTimeWork.value * 60;
+    timerObj.work.timeRemaining = timerObj.work.length;
+    timerObj.break.length = inputTimeBreak.value * 60;
+    timerObj.break.timeRemaining = timerObj.break.length;
   }
 }
 
@@ -67,7 +71,8 @@ function resetTimer() {
   timerObj.break.length = inputTimeBreak.value * 60;
   timerObj.break.timeRemaining = timerObj.break.length;
 
-  timerObj.break = false;
+  // never break time after a reset
+  timerObj.breakTime = false;
 
   displayTime.innerText = '';
 }

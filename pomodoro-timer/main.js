@@ -1,4 +1,5 @@
 // PROBLEM OCCURRING WHEN TIMER FINISHES AND USER RESETS... SOMETIMES IT DOES NOT RESPOND -- TROUBLESHOOTING REQUIRED
+// FIRST TO GET IT WORKING AND THEN TO MAKE IT LOOK NICE
 
 // TARGET ELEMENTS
 const container = document.querySelector('.main');
@@ -9,14 +10,14 @@ const reset = document.querySelector('.reset');
 const displayTime = document.querySelector('.display-time');
 
 
-// TIMER OBJECT WITH WORK AND BREAK SUB OBJECTS
+// TIMER OBJECT WITH WORK AND BREAK SUB-OBJECTS
 const timerObj = {
   // boolean - is the break timer currently active?
   breakTime: false,
 
   work: {
-    length: 15, // 25*60 --- 25 minutes is default
-    timeRemaining: 15,
+    length: 5, // 25*60 --- 25 minutes is default
+    timeRemaining: 5,
     timing: false, // a flag for start/pause
     started: false,
   },
@@ -35,25 +36,33 @@ const timerObj = {
 function timerFunc(timer) { // timer passed in is EITHER the work or break timer object
   // if there is time remaining in the timer, display current time and decrement time by 1
   if (timer.timeRemaining > 0) {
-    const minsRemaining = Math.floor((timer.timeRemaining % (60*60)) / 60);
-    const secsRemaining = Math.floor((timer.timeRemaining % 60));
-    displayTime.innerText = `${minsRemaining} minutes`;
-    if (secsRemaining) displayTime.innerText += ` ${secsRemaining} seconds`;
-
+    const minsRemaining = 
+      (Math.floor((timer.timeRemaining % (60*60)) / 60))
+      // https://stackoverflow.com/questions/8043026/how-to-format-numbers-by-prepending-0-to-single-digit-numbers
+      .toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    const secsRemaining = 
+      (Math.floor((timer.timeRemaining % 60)))
+      .toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    displayTime.innerText = `${minsRemaining}:${secsRemaining}`;
     timer.timeRemaining--;
   } else { // similar to reset timer but with some necessary differences
-    clearInterval(intervalID);
+    clearInterval(intervalID); // stop the interval from running
     displayTime.innerText = 'Complete';
     timerObj.breakTime ? startButton.innerText = 'Start Work' : startButton.innerText = 'Start Break';
 
     // toggle whether it is breaktime or not
     timerObj.breakTime = !timerObj.breakTime;
 
-    // reset all values
+    // reset all values -- is all of this necessary??
     timerObj.work.length = inputTimeWork.value * 60;
     timerObj.work.timeRemaining = timerObj.work.length;
+    timerObj.work.started = false;
+    timerObj.work.timing = false;
     timerObj.break.length = inputTimeBreak.value * 60;
     timerObj.break.timeRemaining = timerObj.break.length;
+    timerObj.break.started = false;
+    timerObj.break.timing = false;
+
   }
 }
 

@@ -9,38 +9,42 @@
 </head>
 <body>
 
-  <div class="main">
-    <p>Playing with some JS and CSS to get this Pomodoro timer going</p>
+  <div class="container">
+    <div class="main">
+      <p>Playing with some JS and CSS to get this Pomodoro timer going</p>
 
-    <div class="period-select period-select-work">
-      <label for="input-time-work">Work period</label>
-      <select name="input-time-work" class="input-time-work">
-        <option value="5">5 minutes</option>
-        <option value="10">10 minutes</option>
-        <option value="15">15 minutes</option>
-        <option value="20">20 minutes</option>
-        <option value="25" selected>25 minutes</option>
-        <option value="30">30 minutes</option>
-        <option value="35">35 minutes</option>
-      </select>
+      <div class="period-select period-select-work">
+        <label for="input-time-work">Work period</label>
+        <select name="input-time-work" class="input-time-work">
+          <option value="0.08333334">5 seconds (testing)</option>
+          <option value="5">5 minutes</option>
+          <option value="10">10 minutes</option>
+          <option value="15">15 minutes</option>
+          <option value="20">20 minutes</option>
+          <option value="25" selected>25 minutes</option>
+          <option value="30">30 minutes</option>
+          <option value="35">35 minutes</option>
+        </select>
+      </div>
+
+      <div class="period-select period-select-break">
+        <label for="input-time-break">Break period</label>
+        <select name="input-time-break" class="input-time-break">
+          <option value="0.08333334">5 seconds (testing)</option>
+          <option value="5" selected>5 minutes</option>
+          <option value="10">10 minutes</option>
+          <option value="15">15 minutes</option>
+          <option value="20">20 minutes</option>
+          <option value="25" >25 minutes</option>
+          <option value="30">30 minutes</option>
+          <option value="35">35 minutes</option>
+        </select>
+      </div>
+
+      <button class="countdown">Start</button>
+      <button class="reset">Reset</button>
+      <h1 class="display-time"></h1>
     </div>
-
-    <div class="period-select period-select-break">
-      <label for="input-time-break">Break period</label>
-      <select name="input-time-break" class="input-time-break">
-        <option value="5" selected>5 minutes</option>
-        <option value="10">10 minutes</option>
-        <option value="15">15 minutes</option>
-        <option value="20">20 minutes</option>
-        <option value="25" >25 minutes</option>
-        <option value="30">30 minutes</option>
-        <option value="35">35 minutes</option>
-      </select>
-    </div>
-
-    <button class="countdown">Start</button>
-    <button class="reset">Reset</button>
-    <h1 class="display-time"></h1>
   </div>
 
   <script src="main.js"></script>

@@ -11,10 +11,9 @@
 
   <div class="container">
     <div class="main">
-      <p>Playing with some JS and CSS to get this Pomodoro timer going</p>
 
       <div class="period-select period-select-work">
-        <label for="input-time-work">Work period</label>
+        <label for="input-time-work">Work period: </label>
         <select name="input-time-work" class="input-time-work">
           <option value="0.08333334">5 seconds (testing)</option>
           <option value="5">5 minutes</option>
@@ -28,7 +27,7 @@
       </div>
 
       <div class="period-select period-select-break">
-        <label for="input-time-break">Break period</label>
+        <label for="input-time-break">Break period: </label>
         <select name="input-time-break" class="input-time-break">
           <option value="0.08333334">5 seconds (testing)</option>
           <option value="5" selected>5 minutes</option>
@@ -44,6 +43,10 @@
       <button class="countdown">Start</button>
       <button class="reset">Reset</button>
       <h1 class="display-time"></h1>
+
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
     </div>
   </div>
 

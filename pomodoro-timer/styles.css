@@ -5,6 +5,10 @@ body {
   text-align: center;
 }
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 .container {
   background: #fff;
   padding: 44px;
@@ -20,30 +24,40 @@ select {
 }
 
 button {
-  background: rgb(0, 120, 0);
-  color: #fff;
+  /* background: rgb(0, 120, 0); */
+  background: #fff;
+  /* color: #fff; */
+  color: #333;
   border-radius: 1px;
   padding: 1em;
   font-size: 1em;
   border: 3px solid rgb(0, 120, 0);
   width: 10em;
   margin: 22px;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 rgba(0,0,0,.4);
+  transition: .3s;
 }
 
 button:hover {
-  background: rgb(0, 151, 0);
+  /* background: rgb(0, 151, 0); */
+  background: rgb(0, 120, 0);
   color: #fff;
   cursor: pointer;
+  box-shadow: 0 6px 0 rgba(0,0,0,.4);
 }
 
 button.reset {
-  background: rgb(143, 0, 0);
+  /* background: rgb(143, 0, 0); */
+  background: #fff;
   border: 3px solid rgb(143, 0, 0);
-  color: #fff;
+  /* color: #fff; */
+  color: #333;
 }
 
 button.reset:hover {
-  background: rgb(204, 0, 0);
+  /* background: rgb(204, 0, 0); */
+  background: rgb(143, 0, 0);
   color: #fff;
 }
 
@@ -52,14 +66,29 @@ button.reset:hover {
 }
 
 h1 {
-  border: 2px solid rgb(143, 0, 0);
-  /* display: inline-block; */
-  margin: 44px auto;
+  display: inline-block;
+  font-size: 6em;
+  margin: 0 auto;
   padding: 22px;
+  height: 1.5em;
+  width: 100%;
 }
 
 /* This isn't actually applied in the JS currently... */
 h1.display-break {
   border: 2px solid rgb(0, 120, 0);
   color: rgb(0, 120, 0);
+}
+
+.progress-container {
+  display: flex;
+  background: #333;
+  width: 500px;
+  height: 10px;
+}
+
+.progress-bar {
+  transition: 0.3s;
+  width: 0;
+  background: rgb(143, 0, 0);
 }

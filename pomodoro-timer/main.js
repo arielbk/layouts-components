@@ -8,6 +8,7 @@ const inputTimeWork = document.querySelector('.input-time-work');
 const inputTimeBreak = document.querySelector('.input-time-break');
 const reset = document.querySelector('.reset');
 const displayTime = document.querySelector('.display-time');
+const progressBar = document.querySelector('.progress-bar')
 
 
 // TIMER OBJECT WITH WORK AND BREAK SUB-OBJECTS
@@ -45,6 +46,8 @@ function timerFunc(timer) { // timer passed in is EITHER the work or break timer
       .toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
     displayTime.innerText = `${minsRemaining}:${secsRemaining}`;
     timer.timeRemaining--;
+    progressBar.style.width = `${500 - (timer.timeRemaining / timer.length) * 500}px`;
+    timerObj.breakTime ? progressBar.style.backgroundColor = 'rgb(0, 120, 0)' : progressBar.style.backgroundColor = 'rgb(143, 0, 0)';
   } else { // similar to reset timer but with some necessary differences
     clearInterval(intervalID); // stop the interval from running
     displayTime.innerText = 'Complete';
@@ -62,7 +65,6 @@ function timerFunc(timer) { // timer passed in is EITHER the work or break timer
     timerObj.break.timeRemaining = timerObj.break.length;
     timerObj.break.started = false;
     timerObj.break.timing = false;
-
   }
 }
 

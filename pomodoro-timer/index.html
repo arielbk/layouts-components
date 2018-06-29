@@ -6,25 +6,33 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pomodoro Timer</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 <body>
 
   <div class="container">
 
-    <div class="main">
+      <div class="inner-wrapper">
 
-      <h2 class="display-time">Pomodoro</h2>
+        <h2 class="display-time">Pomodoro</h2>
 
-      <div class="progress-container">
-        <div class="progress-bar"></div>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+
+      <div class="buttons">
+        <a class="countdown"><i class="fas fa-play"></i> Work</button>
+        <a class="reset"><i class="fas fa-sync-alt"></i> Reset</button>
       </div>
 
-    <div class="buttons">
-      <button class="countdown">Start Work</button>
-      <button class="reset">Reset</button>
-    </div>
+      </div>
 
     <div class="options">
+
+      <div class="settings-icon">
+        <i class="fas fa-cog"></i>
+      </div>
+
       <div class="period-select period-select-work">
         <label for="input-time-work">Work period: </label>
         <select name="input-time-work" class="input-time-work">
@@ -56,6 +64,8 @@
     </div>
 
   </div>
+
+  <audio src="sounds/bell.wav" class="bell" hidden></audio>
 
   <script src="main.js"></script>
 </body>

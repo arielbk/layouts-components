@@ -13,6 +13,7 @@ const inputTimeBreak = document.querySelector('.input-time-break');
 const reset = document.querySelector('.reset');
 const displayTime = document.querySelector('.display-time');
 const progressBar = document.querySelector('.progress-bar')
+const bell = document.querySelector('.bell');
 
 
 /*_____________________________________________________________________________________
@@ -51,7 +52,7 @@ function timerFunc(timer) { // timer passed in is EITHER the work or break timer
   // if timer ends, pass along to another function
   if (timer.timeRemaining < 1) {
     resetTimer();
-
+    bell.play();
     displayTime.innerText = 'Finished!';
 
     // toggle whether it is breaktime or not
@@ -60,11 +61,11 @@ function timerFunc(timer) { // timer passed in is EITHER the work or break timer
     // UI changes -- after breaktime toggle!
     if (timerObj.breakTime) {
       displayTime.style.color = 'rgb(0,120,0)';
-      startButton.innerText = 'Start Break';
+      startButton.innerHTML = `<i class="fas fa-play"></i> Break`;
       progressBar.style.backgroundColor = 'rgb(0, 120, 0)';
     } else {
       displayTime.style.color = 'rgb(143,0,0)';
-      startButton.innerText = 'Start Work';
+      startButton.innerHTML = `<i class="fas fa-play"></i> Work`;
       progressBar.style.backgroundColor = 'rgb(143, 0, 0)';
     }
 
@@ -126,10 +127,10 @@ function startPause(timerObj) {
 
   if (timer.timing) { // if the timer is now running (after click)
     intervalID = setInterval(() => timerFunc(timer), 1000);
-    startButton.innerText = 'Pause'; // begin timer and display green pause button
+    startButton.innerHTML = `<i class="fas fa-pause"></i> Pause`; // begin timer and display green pause button
   } else {
     clearInterval(intervalID);
-    startButton.innerText = 'Continue'; // i.e. timer is paused
+    startButton.innerHTML = `<i class="fas fa-play"></i> Continue`; // i.e. timer is paused
   }
 }
 
@@ -144,7 +145,8 @@ reset.addEventListener('click', () => {
   timerObj.breakTime = false;
   progressBar.style.background = 'rgb(143,0,0)';
   displayTime.style.color = 'rgba(143,0,0)';
-  displayTime.innerText = 'Pomodoro'
+  displayTime.innerText = 'Pomodoro';
+  startButton.innerHTML = `<i class="fas fa-play"></i> Work`;
 });
 
 

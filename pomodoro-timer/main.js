@@ -1,7 +1,11 @@
 // PROBLEM OCCURRING WHEN TIMER FINISHES AND USER RESETS... SOMETIMES IT DOES NOT RESPOND -- TROUBLESHOOTING REQUIRED
 // FIRST TO GET IT WORKING AND THEN TO MAKE IT LOOK NICE
 
-// TARGET ELEMENTS
+
+/*_____________________________________________________________________________________
+                                     TARGET ELEMENTS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
 const container = document.querySelector('.main');
 const startButton = document.querySelector('.countdown');
 const inputTimeWork = document.querySelector('.input-time-work');
@@ -11,42 +15,60 @@ const displayTime = document.querySelector('.display-time');
 const progressBar = document.querySelector('.progress-bar')
 
 
-// TIMER OBJECT WITH WORK AND BREAK SUB-OBJECTS
+/*_____________________________________________________________________________________
+                                     TIMER OBJECT
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
 const timerObj = {
 
   // boolean - is the break timer currently active?
   breakTime: false,
 
+  // WORK TIMER
   work: {
-    length: 5, // 25*60 --- 25 minutes is default
-    timeRemaining: 5,
+    length: 1500, // 25*60 --- 25 minutes is default
+    timeRemaining: 1500,
     timing: false, // a flag for start/pause
     started: false,
   },
 
+  // BREAK TIMER
   break: {
     length: 300,
     timeRemaining: 300,
     timing: false, // timing controlled by start/stop
     started: false, // controls whether choosing a new time will take effect
   }
-
 }
 
 
-// FUNCTIONS
+/*_____________________________________________________________________________________
+                                     FUNCTIONS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 
 // timer function called every second while timer is on
 function timerFunc(timer) { // timer passed in is EITHER the work or break timer object
   // if timer ends, pass along to another function
-  if (timer.timeRemaining == 0) {
+  if (timer.timeRemaining < 1) {
     resetTimer();
 
-    displayTime.innerText = 'Complete';
-    timerObj.breakTime ? startButton.innerText = 'Start Work' : startButton.innerText = 'Start Break';
+    displayTime.innerText = 'Finished!';
 
     // toggle whether it is breaktime or not
     timerObj.breakTime = !timerObj.breakTime;
+
+    // UI changes -- after breaktime toggle!
+    if (timerObj.breakTime) {
+      displayTime.style.color = 'rgb(0,120,0)';
+      startButton.innerText = 'Start Break';
+      progressBar.style.backgroundColor = 'rgb(0, 120, 0)';
+    } else {
+      displayTime.style.color = 'rgb(143,0,0)';
+      startButton.innerText = 'Start Work';
+      progressBar.style.backgroundColor = 'rgb(143, 0, 0)';
+    }
+
+    return; // and break out of the function
   };
 
   // display current time and decrement time by 1
@@ -60,11 +82,12 @@ function timerFunc(timer) { // timer passed in is EITHER the work or break timer
     displayTime.innerText = `${minsRemaining}:${secsRemaining}`;
     timer.timeRemaining--;
     progressBar.style.width = `${500 - (timer.timeRemaining / timer.length) * 500}px`;
-    timerObj.breakTime ? progressBar.style.backgroundColor = 'rgb(0, 120, 0)' : progressBar.style.backgroundColor = 'rgb(143, 0, 0)';
 }
 
 // when reset button is pushed or after time runs out
 function resetTimer() {
+  clearInterval(intervalID);
+
   progressBar.style.width = 0;
 
   // so that timer does not continue to run in bg
@@ -80,9 +103,6 @@ function resetTimer() {
   timerObj.break.started = false;
   timerObj.break.timing = false;
 
-  // never break time after a reset
-  timerObj.breakTime = false;
-
   displayTime.innerText = '';
 }
 
@@ -91,15 +111,12 @@ let intervalID;
 function startPause(timerObj) {
 
   // break or work?
-  if (timerObj.breakTime) {
-    timer = timerObj.break;
-    displayTime.style.color = 'rgb(0, 120, 0)';
-  } else {
-    timer = timerObj.work;
-    displayTime.style.color = 'rgb(143,0,0';
-  }
+  timerObj.breakTime ? timer = timerObj.break : timer = timerObj.work;
 
-  timer.started = true; // hmm is this always right? calling it from other functions?
+  // if this is a fresh timer, set its remaining time to input value
+  if (!timer.started) timer.timeRemaining = timer.length;
+
+  timer.started = true;
   timer.timing = !timer.timing; // toggle whether timing with start and pause
 
   if (timer.timing) { // if the timer is now running (after click)
@@ -111,17 +128,21 @@ function startPause(timerObj) {
   }
 }
 
-function setTimerLength(timer) {
-  timer.length = this.value * 60;
-  if (!timer.started) timerObj.timeRemaining = timerObj.length;
-}
 
+/*_____________________________________________________________________________________
+                                     EVENT LISTENERS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 
-// EVENT LISTENERS
 startButton.addEventListener('click', () => startPause(timerObj));
-inputTimeWork.addEventListener('change', () => setTimerLength(timerObj.work));
-inputTimeBreak.addEventListener('change', () => setTimerLength(timerObj.break));
+inputTimeWork.addEventListener('change', () => timerObj.break = inputTimeWork.value * 60);
+inputTimeBreak.addEventListener('change', () => timerObj.break = inputTimeBreak.value * 60);
 reset.addEventListener('click', () => {
   resetTimer();
-  // other UI changes!!
+  timerObj.breakTime = false;
+  progressBar.style.background = 'rgb(143,0,0)';
+  displayTime.style.color = 'rgba(143,0,0)'
 });
+
+
+// rgb(143, 0, 0);
+// rgb(0, 120, 0);

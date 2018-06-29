@@ -86,7 +86,7 @@ h1 {
 
 .progress-bar {
   border-radius: 10px;
-  transition: 0.3s;
+  transition: 1s;
   width: 0;
   background: rgb(143, 0, 0);
 }

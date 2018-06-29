@@ -1,6 +1,7 @@
 body {
   color: rgb(143, 0, 0);
-  background: #333;
+  background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url(images/tomatoes.jpg);
+  background-size: cover;
   font-family: 'helvetica neue', 'arial', sans-serif;
   text-align: center;
 }
@@ -15,7 +16,7 @@ body {
   padding: 44px;
   width: 600px;
   margin: 44px auto;
-  box-shadow: 0 5px 45px rgba(0,0,0,0.4);
+  box-shadow: 0 5px 45px #000;
 }
 
 select {
@@ -66,12 +67,11 @@ button.reset:hover {
   margin: 22px;
 }
 
-h1 {
-  /* color: #333; */
+h2 {
   display: inline-block;
   font-size: 6em;
   margin: 0 auto;
-  padding: 22px;
+  /* padding: 22px; */
   height: 1.5em;
   width: 100%;
 }
@@ -80,8 +80,11 @@ h1 {
   display: flex;
   border-radius: 10px;
   background: #333;
+  box-shadow: 0 5px 20px #000 inset;
   width: 500px;
-  height: 10px;
+  height: 20px;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .progress-bar {
@@ -89,4 +92,23 @@ h1 {
   transition: 1s;
   width: 0;
   background: rgb(143, 0, 0);
+}
+
+.buttons {
+  display: flex;
+}
+
+.buttons button {
+  flex: 1 1 50%;
+  margin-top: 33px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.options > * {
+  flex: 1 1 50%;
+  flex-wrap: wrap;
 }

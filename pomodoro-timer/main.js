@@ -86,8 +86,8 @@ function timerFunc(timer) { // timer passed in is EITHER the work or break timer
 
 // when reset button is pushed or after time runs out
 function resetTimer() {
-  clearInterval(intervalID);
 
+  clearInterval(intervalID);
   progressBar.style.width = 0;
 
   // so that timer does not continue to run in bg
@@ -114,7 +114,12 @@ function startPause(timerObj) {
   timerObj.breakTime ? timer = timerObj.break : timer = timerObj.work;
 
   // if this is a fresh timer, set its remaining time to input value
-  if (!timer.started) timer.timeRemaining = timer.length;
+  if (!timer.started) {
+    timerObj.breakTime 
+      ? timer.length = inputTimeBreak.value * 60
+      : timer.length = inputTimeWork.value * 60;
+    timer.timeRemaining = timer.length;
+  }
 
   timer.started = true;
   timer.timing = !timer.timing; // toggle whether timing with start and pause
@@ -134,13 +139,12 @@ function startPause(timerObj) {
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 
 startButton.addEventListener('click', () => startPause(timerObj));
-inputTimeWork.addEventListener('change', () => timerObj.break = inputTimeWork.value * 60);
-inputTimeBreak.addEventListener('change', () => timerObj.break = inputTimeBreak.value * 60);
 reset.addEventListener('click', () => {
   resetTimer();
   timerObj.breakTime = false;
   progressBar.style.background = 'rgb(143,0,0)';
-  displayTime.style.color = 'rgba(143,0,0)'
+  displayTime.style.color = 'rgba(143,0,0)';
+  displayTime.innerText = 'Pomodoro'
 });
 
 

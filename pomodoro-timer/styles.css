@@ -10,6 +10,7 @@ body {
 }
 
 .container {
+  border-radius: 10px;
   background: #fff;
   padding: 44px;
   width: 600px;
@@ -33,7 +34,7 @@ button {
   font-size: 1em;
   border: 3px solid rgb(0, 120, 0);
   width: 10em;
-  margin: 22px;
+  margin: 12px;
   border-radius: 10px;
   box-shadow: 0 3px 0 rgba(0,0,0,.4);
   transition: .3s;
@@ -66,6 +67,7 @@ button.reset:hover {
 }
 
 h1 {
+  /* color: #333; */
   display: inline-block;
   font-size: 6em;
   margin: 0 auto;
@@ -74,20 +76,16 @@ h1 {
   width: 100%;
 }
 
-/* This isn't actually applied in the JS currently... */
-h1.display-break {
-  border: 2px solid rgb(0, 120, 0);
-  color: rgb(0, 120, 0);
-}
-
 .progress-container {
   display: flex;
+  border-radius: 10px;
   background: #333;
   width: 500px;
   height: 10px;
 }
 
 .progress-bar {
+  border-radius: 10px;
   transition: 0.3s;
   width: 0;
   background: rgb(143, 0, 0);

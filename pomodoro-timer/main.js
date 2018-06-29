@@ -13,6 +13,7 @@ const progressBar = document.querySelector('.progress-bar')
 
 // TIMER OBJECT WITH WORK AND BREAK SUB-OBJECTS
 const timerObj = {
+
   // boolean - is the break timer currently active?
   breakTime: false,
 
@@ -22,12 +23,14 @@ const timerObj = {
     timing: false, // a flag for start/pause
     started: false,
   },
+
   break: {
     length: 300,
     timeRemaining: 300,
     timing: false, // timing controlled by start/stop
     started: false, // controls whether choosing a new time will take effect
   }
+
 }
 
 
@@ -35,8 +38,18 @@ const timerObj = {
 
 // timer function called every second while timer is on
 function timerFunc(timer) { // timer passed in is EITHER the work or break timer object
-  // if there is time remaining in the timer, display current time and decrement time by 1
-  if (timer.timeRemaining > 0) {
+  // if timer ends, pass along to another function
+  if (timer.timeRemaining == 0) {
+    resetTimer();
+
+    displayTime.innerText = 'Complete';
+    timerObj.breakTime ? startButton.innerText = 'Start Work' : startButton.innerText = 'Start Break';
+
+    // toggle whether it is breaktime or not
+    timerObj.breakTime = !timerObj.breakTime;
+  };
+
+  // display current time and decrement time by 1
     const minsRemaining = 
       (Math.floor((timer.timeRemaining % (60*60)) / 60))
       // https://stackoverflow.com/questions/8043026/how-to-format-numbers-by-prepending-0-to-single-digit-numbers
@@ -48,39 +61,24 @@ function timerFunc(timer) { // timer passed in is EITHER the work or break timer
     timer.timeRemaining--;
     progressBar.style.width = `${500 - (timer.timeRemaining / timer.length) * 500}px`;
     timerObj.breakTime ? progressBar.style.backgroundColor = 'rgb(0, 120, 0)' : progressBar.style.backgroundColor = 'rgb(143, 0, 0)';
-  } else { // similar to reset timer but with some necessary differences
-    clearInterval(intervalID); // stop the interval from running
-    displayTime.innerText = 'Complete';
-    timerObj.breakTime ? startButton.innerText = 'Start Work' : startButton.innerText = 'Start Break';
-
-    // toggle whether it is breaktime or not
-    timerObj.breakTime = !timerObj.breakTime;
-
-    // reset all values -- is all of this necessary??
-    timerObj.work.length = inputTimeWork.value * 60;
-    timerObj.work.timeRemaining = timerObj.work.length;
-    timerObj.work.started = false;
-    timerObj.work.timing = false;
-    timerObj.break.length = inputTimeBreak.value * 60;
-    timerObj.break.timeRemaining = timerObj.break.length;
-    timerObj.break.started = false;
-    timerObj.break.timing = false;
-  }
 }
 
 // when reset button is pushed or after time runs out
 function resetTimer() {
-  timerObj.breakTime ? timer = timerObj.break : timer = timerObj.work;
+  progressBar.style.width = 0;
 
-  if (timer.timing) startPause(timerObj); // so that timer does not continue to run in bg
-  timer.started = false;
-  startButton.innerText = 'Start';
+  // so that timer does not continue to run in bg
+  if (timerObj.work.timing || timerObj.break.timing) startPause(timerObj);
 
   // reset all values
   timerObj.work.length = inputTimeWork.value * 60;
   timerObj.work.timeRemaining = timerObj.work.length;
+  timerObj.work.started = false;
+  timerObj.work.timing = false;
   timerObj.break.length = inputTimeBreak.value * 60;
   timerObj.break.timeRemaining = timerObj.break.length;
+  timerObj.break.started = false;
+  timerObj.break.timing = false;
 
   // never break time after a reset
   timerObj.breakTime = false;
@@ -123,4 +121,7 @@ function setTimerLength(timer) {
 startButton.addEventListener('click', () => startPause(timerObj));
 inputTimeWork.addEventListener('change', () => setTimerLength(timerObj.work));
 inputTimeBreak.addEventListener('change', () => setTimerLength(timerObj.break));
-reset.addEventListener('click', resetTimer);
+reset.addEventListener('click', () => {
+  resetTimer();
+  // other UI changes!!
+});

@@ -1,39 +1,50 @@
 body {
   font: 16px Arial, sans-serif;
+  margin: 0;
 }
+
 nav {
   margin: 0 auto;
-  display: inline-block;
 }
-nav::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+
+/* flex parent */
 ul {
+  display: flex;
+
   margin: 0;
   padding: 0;
   list-style: none;
+  transition: .5s;
 }
+
 ul li {
-  float: left;
-  width: 220px;
-  height: 40px;
+  flex-grow: 1;
+
+  height: 66px;
   background-color: rgba(0,0,0,0.8);
-  line-height: 40px;
+  line-height: 66px;
   text-align: center;
 }
+
 ul li a {
+  width: 100%;
   display: block;
   color: #fff;
   text-decoration: none;
 }
+
 ul li a:hover {
   background-color: #3d08ea;
 }
-ul li ul li {
-  display: none;
+
+ul li ul {
+  display: flex;
+  flex-direction: column;
+  max-height: 0; /* regular height does not allow transitions... */
+  overflow: hidden;
 }
-ul li:hover ul li {
-  display: block;
+
+ul li:hover ul {
+  max-height: 999px; /* regular height does not allow transitions... */
+  border: 1px solid rgba(0,0,0,0);
 }

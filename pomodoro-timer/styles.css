@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Kalam');
 
 html {
-  background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url(images/tomatoes.jpg) no-repeat;
-  background-size: cover;
+  background: radial-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.6)), url(images/tomatoes.jpg) no-repeat;
+  background-size: 150%;
+  background-position: Calc(var(--xPosition)/10) Calc(var(--yPosition)/10);
   min-height: 100vh;
   /* background-repeat: no-repeat; */
+  --xPosition: -100px;
+  --yPosition: -100px;
 }
 
 body {
@@ -126,6 +129,7 @@ h2 {
 
   background: linear-gradient(to bottom, #333, #000);
   border-radius: 0 0 10px 10px;
+  border-top: 3px solid #222;
   color: #ccc;
 }
 
@@ -146,3 +150,14 @@ h2 {
   font-size: 2em;
   color: #777;
 }
+.fas.fa-cog {
+  transition: 1s;
+}
+/* 
+.options-form {
+  display: flex;
+}
+
+.options-form > * {
+  background: #fff;
+} */

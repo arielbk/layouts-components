@@ -1,7 +1,3 @@
-// PROBLEM OCCURRING WHEN TIMER FINISHES AND USER RESETS... SOMETIMES IT DOES NOT RESPOND -- TROUBLESHOOTING REQUIRED
-// FIRST TO GET IT WORKING AND THEN TO MAKE IT LOOK NICE
-
-
 /*_____________________________________________________________________________________
                                      TARGET ELEMENTS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
@@ -12,7 +8,7 @@ const inputTimeWork = document.querySelector('.input-time-work');
 const inputTimeBreak = document.querySelector('.input-time-break');
 const reset = document.querySelector('.reset');
 const displayTime = document.querySelector('.display-time');
-const progressBar = document.querySelector('.progress-bar')
+const progressBar = document.querySelector('.progress-bar');
 const bell = document.querySelector('.bell');
 
 
@@ -152,3 +148,23 @@ reset.addEventListener('click', () => {
 
 // rgb(143, 0, 0);
 // rgb(0, 120, 0);
+
+
+
+/*_____________________________________________________________________________________
+                                     FUN BACKGROUND BG
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
+const htmlEl = document.querySelector('html');
+
+window.addEventListener('mousemove', e => htmlEl.style = `--xPosition: -${e.screenX}px; --yPosition: -${e.screenY}px`);
+
+const cog = document.querySelector('.fas.fa-cog');
+
+cog.addEventListener('click', cogSpin);
+
+let spinDeg = 60;
+function cogSpin(e) {
+  this.style = `transform: rotate(${spinDeg}deg);`;
+  spinDeg < 500 && spinDeg > 0 ? spinDeg *= 1.5 : spinDeg /= 2;
+}

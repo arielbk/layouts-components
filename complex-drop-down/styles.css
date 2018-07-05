@@ -1,0 +1,18 @@
+/* This dropdown menu is intended to be similar to the one found on the stripe
+website @ https://stripe.com/
+
+Front-end practice!! */
+
+:root {
+  --beetroot: rgb(136, 0, 23);
+}
+
+body {
+  font: 16px Arial, sans-serif;
+  margin: 0;
+  background: 
+}
+
+nav {
+  margin: 0 auto;
+}

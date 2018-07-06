@@ -50,6 +50,7 @@ body {
   background: #fff;
   padding: 1em;
   margin-bottom: 44px; /* later this can go */
+  width: 600px;
 }
 
 .dropdown-about p {

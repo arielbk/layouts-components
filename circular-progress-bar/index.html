@@ -1,5 +1,5 @@
 <!-- This video helped me as a starting point: https://www.youtube.com/watch?v=unopT2aCJTE -->
-
+<!-- The following was immensely helpful for js animation frames: http://www.javascriptkit.com/javatutors/requestanimationframe.shtml -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,46 +11,47 @@
 </head>
 <body>
 
-  <canvas height="200" width="200" id="counter"></canvas>
+  <canvas height="152" width="152"></canvas>
   
   <script>
-    const counter = document.querySelector('#counter').getContext('2d');
-    let number = 0; // starting point
-    let pointToFill = 4.72; // point from which to fill
-    let cw = counter.canvas.width;
-    let ch = counter.canvas.height;
-    let diff; // difference between current [number] and target [100]
+    const circle = document.querySelector('canvas').getContext('2d');
 
-    function fillCounter() {
-      diff = ((number/100) * Math.PI * 2 * 10);
+    console.log(circle);
 
-      counter.clearRect(0,0,cw,ch); // clear canvas every time function is called
+    const startPoint = 4.72; // point from which to fill -- why THIS number?
+    const cw = circle.canvas.width;
+    const ch = circle.canvas.height;
 
-      counter.lineWidth = 20; // stroke size
-      counter.fillStyle = '#fff';
+    let percentDone = 0; // starting point
 
-      counter.strokeStyle = '#f5e0a9';
+    function progressCircle() {
 
-      counter.textAlign = 'center';
+      let endPoint = ((percentDone/100) * Math.PI * 2);
 
-      counter.fillText(number,100,110); // text, x ,y
+      circle.clearRect(0,0,cw,ch); // clear canvas every time function is called
 
-      counter.beginPath();
-      counter.arc(100,100,90,pointToFill,diff/10+pointToFill); // x, y, radius, start, stop
+      circle.lineWidth = 22; // stroke size
+      circle.strokeStyle = '#cf4547';
 
-      counter.stroke(); // fill stroke
+      // center text
+      circle.fillText(percentDone + '%', 75, 80); // text, x ,y
+      circle.fillStyle = '#8df37a';
+      circle.textAlign = 'center';
+      circle.font = '16px sans-serif';
 
-      if (number >= 100) {
-        clearTimeout(fill); // fill is a var, it calls fillcounter()
+      circle.beginPath();
+      circle.arc(76,76,65,startPoint,endPoint+startPoint); // x, y, radius, start, end
+
+      circle.stroke(); // fill stroke
+
+      if (percentDone < 100) {
+        percentDone++;
+        requestAnimationFrame(progressCircle);
       }
-
-      number++;
-
     }
 
-    // call the function
-
-    var fill = setInterval(fillCounter, 50);
+    // call the function (performantly hopefully)
+    document.querySelector('canvas').addEventListener('click', () => requestAnimationFrame(progressCircle));
 
   </script>
 </body>

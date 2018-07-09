@@ -1,0 +1,57 @@
+<!-- This video helped me as a starting point: https://www.youtube.com/watch?v=unopT2aCJTE -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="main.css">
+  <title>Circular progress bar</title>
+</head>
+<body>
+
+  <canvas height="200" width="200" id="counter"></canvas>
+  
+  <script>
+    const counter = document.querySelector('#counter').getContext('2d');
+    let number = 0; // starting point
+    let pointToFill = 4.72; // point from which to fill
+    let cw = counter.canvas.width;
+    let ch = counter.canvas.height;
+    let diff; // difference between current [number] and target [100]
+
+    function fillCounter() {
+      diff = ((number/100) * Math.PI * 2 * 10);
+
+      counter.clearRect(0,0,cw,ch); // clear canvas every time function is called
+
+      counter.lineWidth = 20; // stroke size
+      counter.fillStyle = '#fff';
+
+      counter.strokeStyle = '#f5e0a9';
+
+      counter.textAlign = 'center';
+
+      counter.fillText(number,100,110); // text, x ,y
+
+      counter.beginPath();
+      counter.arc(100,100,90,pointToFill,diff/10+pointToFill); // x, y, radius, start, stop
+
+      counter.stroke(); // fill stroke
+
+      if (number >= 100) {
+        clearTimeout(fill); // fill is a var, it calls fillcounter()
+      }
+
+      number++;
+
+    }
+
+    // call the function
+
+    var fill = setInterval(fillCounter, 50);
+
+  </script>
+</body>
+</html>

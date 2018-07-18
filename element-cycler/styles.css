@@ -1,0 +1,33 @@
+body {
+  font-size: 18px;
+  font-family: sans-serif;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20vh
+}
+
+.prev-arrow,
+.next-arrow {
+  padding: 2em;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
+}
+
+.prev-arrow:hover,
+.next-arrow:hover {
+  cursor: pointer;
+}
+
+.shown-item {
+  display: inline-block;
+  width: 20vw;
+  text-align: center;
+}

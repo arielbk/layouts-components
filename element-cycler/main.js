@@ -2,6 +2,7 @@
 
 const array = ['jedan', 'dva', 'tri', 'ćetri', 'pet', 'šest', 'sedam', 'ossam', 'devet', 'deset'];
 const display = document.querySelector('.display');
+const progress = document.querySelector('.progress');
 
 const prevArrow = document.querySelector('.prev-arrow');
 const nextArrow = document.querySelector('.next-arrow');
@@ -17,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   elements = display.querySelectorAll('li');
   elements[index].classList.remove('hidden');
+
+  progress.innerHTML = array.map((element, i) => {
+    return `<div class="progress-tab progress-${i}"></div>`
+  }).join('');
+  progress.querySelector(`.progress-${index}`).classList.add('progress-current');
 });
 
 function cycleItem(direction) {
@@ -35,6 +41,8 @@ function cycleItem(direction) {
     index = newIndex;
   }, 300);
 
+  progress.querySelector(`.progress-${index}`).classList.remove('progress-current');
+
   // ADD THE NEW ELEMENT
   // account for special cases
   if (index < 1 && direction === 'right') { newIndex = array.length-1; }
@@ -44,7 +52,9 @@ function cycleItem(direction) {
 
   elements[newIndex].classList.add(`fade-${otherDirection}`);
   elements[newIndex].classList.remove('hidden');
-  setTimeout(() => elements[newIndex].classList.remove(`fade-${otherDirection}`), 300)
+  setTimeout(() => elements[newIndex].classList.remove(`fade-${otherDirection}`), 300);
+
+  progress.querySelector(`.progress-${newIndex}`).classList.add('progress-current');
 }
 
 prevArrow.addEventListener('click', (e) => {

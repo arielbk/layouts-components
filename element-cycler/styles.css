@@ -6,15 +6,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .cycler {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
+  flex-wrap: wrap;
 
-  width: 50%;
+  overflow: hidden;
+  width: 100%;
 }
 
 .prev-arrow,
@@ -40,7 +42,7 @@ body {
   justify-content: center;
   align-content: center;
 
-  width: 100%;
+  width: 50%;
   list-style: none;
 }
 
@@ -65,4 +67,18 @@ li {
 .fade-right {
   margin-left: 80%;
   opacity: 0;
+}
+
+.progress-tab {
+  display: inline-block;
+  margin: 0 10px;
+  width: 50px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 5px;
+  transition: background .3s;
+}
+
+.progress-current {
+  background: #555;
 }

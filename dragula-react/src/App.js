@@ -23,24 +23,25 @@ class App extends Component {
       if (containers.length > 0) {
         let options = { containers };
         Dragula(options)
-          .on('drag', (el) => {
-            console.log(`moving item: ${el.innerHTML} \nfrom: ${el.parentNode.dataset.id}`);
+          .on('drag', (el, source) => {
+            const sourceList = [...this.state[source.dataset.id]];
+            
+            // remove from source
+            const sourceIndex = sourceList.indexOf(el.innerHTML);
+            sourceList.splice(sourceIndex, 1);
+
+            this.setState({[source.dataset.id]: sourceList})
           })
           .on('drop', (el, target, source, sibling) => {
             if (el.parentNode) {
               console.log(target, source);
-              const sourceList = [...this.state[source.dataset.id]];
               const targetList = [...this.state[target.dataset.id]];
               
-              // remove from source
-              const sourceIndex = sourceList.indexOf(el.innerHTML);
-              sourceList.splice(sourceIndex, 1);
-
               // add to target
               targetList.push(el.innerHTML);
 
               // still need to get this working........
-              // this.setState({[source.dataset.id]: sourceList, [target.dataset.id]: targetList})
+              this.setState({[target.dataset.id]: targetList})
             }
           });
       }

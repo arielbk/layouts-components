@@ -30,11 +30,11 @@ dragula([document.querySelector('.list-one'), document.querySelector('.list-two'
     console.log('from ' + el.parentNode.dataset.id)
   })
   .on('drop', el => {
-    if (el.parentNode.dataset.id === 'listOne') {
+    if (el.parentNode && el.parentNode.dataset.id === 'listOne') {
       listOneItems.push(el.innerText);
       populateLists();
     }
-    if (el.parentNode.dataset.id === 'listTwo') {
+    if (el.parentNode && el.parentNode.dataset.id === 'listTwo') {
       listTwoItems.push(el.innerText);
       populateLists();
     }

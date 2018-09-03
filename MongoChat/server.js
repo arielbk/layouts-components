@@ -3,11 +3,12 @@ const Mongo = require('mongodb').MongoClient;
 const Client = require('socket.io').listen(4000).sockets;
 
 // connect to mongodb
-Mongo.connect('mongodb://127.0.0.1/mongochat', function(err, db) {
+Mongo.connect('mongodb://127.0.0.1:27017', function(err, client) {
   if (err) {
     throw err;
   }
 
+  let db = client.db('mongochat')
   console.log('connected to mongodb');
 
   // connect to socket.io
@@ -15,7 +16,7 @@ Mongo.connect('mongodb://127.0.0.1/mongochat', function(err, db) {
     let chat = db.collection('chats');
 
     // create function to send status
-    sendStatus = function(s) {
+    let sendStatus = function(s) {
       socket.emit('status', s);
     }
 
@@ -40,8 +41,8 @@ Mongo.connect('mongodb://127.0.0.1/mongochat', function(err, db) {
         sendStatus('Enter a name and message!');
       } else {
         // insert message
-        chat.insert({name: name, message: message}, function() {
-          client.emit('output', [data]);
+        chat.insertOne({name: name, message: message}, function() {
+          Client.emit('output', [data]);
 
           // send status object
           sendStatus({

@@ -3,12 +3,13 @@ const Mongo = require('mongodb').MongoClient;
 const Client = require('socket.io').listen(4000).sockets;
 
 // connect to mongodb
-Mongo.connect('mongodb://127.0.0.1:27017', function(err, client) {
+Mongo.connect('mongodb://127.0.0.1:27017', { useNewUrlParser: true }, function(err, client) {
   if (err) {
     throw err;
   }
 
-  // this is a change from MongoDB 4 and up
+  // this is a change from MongoDB Node driver 3 and up
+  // see: https://stackoverflow.com/questions/47662220/db-collection-is-not-a-function-when-using-mongoclient-v3-0
   const db = client.db('mongochat')
   console.log('connected to mongodb');
 
@@ -31,7 +32,9 @@ Mongo.connect('mongodb://127.0.0.1:27017', function(err, client) {
 
     // handle input event
     socket.on('input', data => {
-      const [name, message] = data;
+      const name = data.name,
+            message = data.message,
+            time = data.time;
 
       // check for name and message
       if (!name || !message) {
@@ -39,7 +42,7 @@ Mongo.connect('mongodb://127.0.0.1:27017', function(err, client) {
         sendStatus('Enter a name and message!');
       } else {
         // insert message
-        chat.insertOne({name: name, message: message}, () => {
+        chat.insertOne({name: name, message: message, time: time}, () => {
           Client.emit('output', [data]);
 
           // send status object
@@ -53,7 +56,7 @@ Mongo.connect('mongodb://127.0.0.1:27017', function(err, client) {
     // handle clear
     socket.on('clear', () => {
       // remove all chats from the collection
-      chat.remove({}, () => {
+      chat.deleteMany({}, () => {
         // emit cleared
         socket.emit('cleared');
       })

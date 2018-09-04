@@ -40,6 +40,16 @@
 
     .chat-message {
       margin-bottom: 1em;
+      position: relative;
+    }
+
+    .message-time {
+      position: absolute;
+      right: 0;
+      opacity: .5;
+      background: #fff;
+      border-radius: 5px;
+      padding: .1em;
     }
   </style>
 </head>
@@ -98,9 +108,13 @@
           if (data.length) {
             data.forEach(message => {
               // build out message div
-              let mDiv = document.createElement('div');
+              const mDiv = document.createElement('div');
+              const timeDiv = document.createElement('div');
               mDiv.setAttribute('class', 'chat-message');
+              timeDiv.setAttribute('class', 'message-time');
               mDiv.textContent = `${message.name} : ${message.message}`;
+              timeDiv.textContent = message.time;
+              mDiv.insertBefore(timeDiv, mDiv.lastChild);
               messages.insertBefore(mDiv, messages.firstChild);
             });
           }
@@ -119,9 +133,17 @@
         textarea.addEventListener('keydown', (e) => {
           if (e.which === 13 && !event.shift) {
             // emit to server input
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes;
+            now.getMinutes() > 9
+              ? minutes = now.getMinutes()
+              : minutes = `0${now.getMinutes()}`;
+
             socket.emit('input', {
               name: username.value,
-              message: textarea.value
+              message: textarea.value,
+              time: `${hours}:${minutes}`,
             });
             e.preventDefault();
           }

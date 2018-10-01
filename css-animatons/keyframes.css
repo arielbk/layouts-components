@@ -3,26 +3,41 @@ body {
 }
 
 .box {
-  background: #000;
-  border-radius: 50%;
+  opacity: .6;
+  background: #fff;
+  margin-top: 50px;
+  margin-right: -20px;
   width: 200px;
   height: 200px;
   position: relative;
-  box-shadow: -3px -3px 20px rgba(0,0,0,.3);
+  display: inline-block;
+  box-shadow: 10px -10px 0 black;
+  
+  animation-name: myanimation-rev;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+  animation-direction: backwards;
+}
+
+.box:hover {
   animation-name: myanimation;
-  animation-duration: 8s;
+  animation-duration: .3s;
   /* can also be 'infinite' */
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   /* animation-delay: 2s; */
-  /* animation-direction: alternate; */
+  animation-direction: alternate;
   animation-timing-function: ease-in-out;
+  opacity: 1;
+  transition: .3s;
 }
 
 @keyframes myanimation {
-  0% { background-color: #000; transform: translate(0,0); border-radius: 50%; box-shadow: -3px -3px 20px rgba(0,0,0,.2); }
-  25% { background-color: #00a; transform: translate(400px,0); border-radius: 50% 10px 10px 10px; box-shadow: -6px -6px 25px rgba(0,0,0,.2); }
-  50% { background-color: #33f; transform: translate(400px,400px); border-radius: 50% 50% 10px 10px; box-shadow: -9px -9px 30px rgba(0,0,0,.2); }
-  75% { background-color: #00a; transform: translate(0,400px); border-radius: 50% 50% 50% 10px; box-shadow: -6px -6px 25px rgba(0,0,0,.2); }
-  100% { background-color: #000; transform: translate(0,0); border-radius: 50%; box-shadow: -3px -3px 20px rgba(0,0,0,.2); }
+  0% { transform: skewY(18deg) translate3d(0,0,0); }
+  100% { transform: skewY(0) translate3d(20px, 20px, 20px); }
+}
+
+@keyframes myanimation-rev {
+  0% { transform: skewY(0) translate3d(20px, 20px, 20px); }
+  100% { transform: skewY(18deg) translate3d(0,0,0); }
 }

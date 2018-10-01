@@ -11,7 +11,7 @@ body {
   height: 200px;
   position: relative;
   display: inline-block;
-  box-shadow: 10px -10px 0 black;
+  box-shadow: 10px -10px 0 #002;
   
   animation-name: myanimation-rev;
   animation-duration: .3s;
@@ -33,11 +33,11 @@ body {
 }
 
 @keyframes myanimation {
-  0% { transform: skewY(18deg) translate3d(0,0,0); }
-  100% { transform: skewY(0) translate3d(20px, 20px, 20px); }
+  0% { transform: skewY(14deg) translate3d(0,0,0); box-shadow: 10px -10px 0 #002;}
+  100% { transform: skewY(0) translate3d(20px, 20px, 20px); box-shadow: 22px -22px 0 #002;}
 }
 
 @keyframes myanimation-rev {
   0% { transform: skewY(0) translate3d(20px, 20px, 20px); }
-  100% { transform: skewY(18deg) translate3d(0,0,0); }
+  100% { transform: skewY(14deg) translate3d(0,0,0); }
 }

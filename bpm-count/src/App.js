@@ -25,6 +25,11 @@ class App extends Component {
     })
   }
 
+  componentDidUpdate() {
+    let html = document.querySelector('body');
+    html.style = `--animationTime: ${120/this.state.bpm}s`
+  }
+
   onTap = e => {
     // this is a bit messy, e is only passed if tap button, not for keypress
     if (e) e.preventDefault();
@@ -74,10 +79,26 @@ class App extends Component {
         seconds of no tap or 
         <Button onClick={this.onReset} className="btn-danger mx-3">Reset</Button>
 
-        <Card className="my-4">
+        <Card className="my-4 p-3">
           <h3>Number of taps:</h3> {this.state.count}
+        </Card>
+        <Card className="my-4 p-3">
           <h3>Time between taps:</h3> {this.state.timeBetween}
+        </Card>
+        <Card className="my-4 p-3">
           <h3>BPM:</h3> {this.state.bpm}
+        </Card>
+        <Card className="my-4 p-3">
+          <h3>Visualiser:</h3>
+          <p>
+            This is animated according to the current BPM
+          </p>
+          <div className="loader">
+            <div className="loader__squares">
+              <div className="loader__squares--one"></div>
+              <div className="loader__squares--two"></div>
+            </div>
+          </div>
         </Card>
       </Container>
     );

@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       timeStart: null,
-      timeBetween: null,
+      timeBetween: 0,
       bpm: 0.0,
       count: 0,
       resetTime: 2000,

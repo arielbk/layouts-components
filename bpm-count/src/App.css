@@ -1,6 +1,6 @@
 /* ooh the possibilities with css variables... */
 :root {
-  --animationTime: 2s;
+  --animationTime: 0s;
 }
 
 .loader {

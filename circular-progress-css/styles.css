@@ -1,0 +1,24 @@
+/* // Inspired by Jeremias Menichelli at CSS Tricks
+// https://css-tricks.com/building-progress-ring-quickly/ */
+
+body {
+  background: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.progress-circle {
+  border: 1px solid #000;
+}
+
+.progress-circle__circle {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  stroke-dasharray: 326.7 326.7;
+  stroke-dashoffset: 163;
+}
+
+/* circumference = radius * 2 * PI
+around 326.7 */

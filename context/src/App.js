@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-// first we ake a new context
+// first we make a new context
 
 const MyContext = React.createContext();
 

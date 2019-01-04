@@ -17,6 +17,7 @@ export const Header = styled.h2`
 
 export const ContentArea = styled.div`
   width: 100%;
+  height: 310px;
   padding: 2rem 4rem;
 `;
 
@@ -34,6 +35,7 @@ export const Footer = styled(ContentArea)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: auto;
 
   div {
     display: flex;

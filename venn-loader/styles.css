@@ -1,8 +1,16 @@
+body {
+  background: #eee;
+}
+
 .content {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -1000%);
+  border: 5px solid transparent;
 }
 
 .circle {
@@ -10,8 +18,6 @@
   border-radius: 100%;
   width: 80px;
   height: 80px;
-  /* border: 2px solid #111; */
-  /* animation-name: windOne; */
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;

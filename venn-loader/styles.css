@@ -1,0 +1,76 @@
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  position: absolute;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  /* border: 2px solid #111; */
+  /* animation-name: windOne; */
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.circle__one {
+  background: rgba(255, 0, 0, 0.4);
+  animation-name: windOne;
+  animation-direction: normal;
+}
+
+.circle__two {
+  background: rgba(0, 0, 255, 0.4);
+  animation-name: windTwo;
+  animation-direction: reverse;
+}
+
+@keyframes windOne {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, 0) scale(0.8);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(50px, 0) scale(0.8);
+  }
+  75% {
+    opacity: 0.4;
+    transform: translate(0, 0) scale(0.6);
+  }
+  100% {
+    opacity: 0.6;
+    transform: translate(-50%, 0) scale(0.8);
+  }
+}
+
+@keyframes windTwo {
+  0% {
+    opacity: 0.6;
+    transform: translate(50%, 0) scale(0.8);
+  }
+  25% {
+    opacity: 0.4;
+    transform: translate(0, 0) scale(0.6);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50px, 0) scale(0.8);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: translate(50%, 0) scale(0.8);
+  }
+}

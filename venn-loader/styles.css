@@ -1,3 +1,14 @@
+/* Variables */
+:root {
+  --animTime: 1s;
+  --diameter: 100px;
+  --travelRight: 25px;
+  --travelLeft: -25px;
+  --borderThickness: 2px;
+  --colorOne: blue;
+  --colorTwo: red;
+}
+
 body {
   background: #eee;
 }
@@ -16,31 +27,29 @@ body {
 .circle {
   position: absolute;
   border-radius: 100%;
-  width: 80px;
-  height: 80px;
-  animation-duration: 1.2s;
+  width: var(--diameter);
+  height: var(--diameter);
+  animation-duration: var(--animTime);
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 
 .circle__one {
-  /* background: rgba(255, 0, 0, 0.4); */
-  border: 1px solid rgb(255, 0, 0);
-  animation-name: windOne;
+  border: var(--borderThickness) solid var(--colorOne);
+  animation-name: wind;
   animation-direction: normal;
 }
 
 .circle__two {
-  /* background: rgba(0, 0, 255, 0.4); */
-  border: 1px solid rgb(0, 0, 255);
-  animation-name: windTwo;
-  /* animation-direction: reverse; */
+  border: var(--borderThickness) solid var(--colorTwo);
+  animation-name: wind;
+  animation-delay: calc(var(--animTime) / 2);
 }
 
-@keyframes windOne {
+@keyframes wind {
   0% {
     opacity: 0.6;
-    transform: translate(-20px, 0) scale(0.8);
+    transform: translate(var(--travelLeft), 0) scale(0.8);
   }
   25% {
     opacity: 1;
@@ -48,7 +57,7 @@ body {
   }
   50% {
     opacity: 0.6;
-    transform: translate(20px, 0) scale(0.8);
+    transform: translate(var(--travelRight), 0) scale(0.8);
   }
   75% {
     opacity: 0.4;
@@ -56,29 +65,6 @@ body {
   }
   100% {
     opacity: 0.6;
-    transform: translate(-20px, 0) scale(0.8);
-  }
-}
-
-@keyframes windTwo {
-  0% {
-    opacity: 0.6;
-    transform: translate(20px, 0) scale(0.8);
-  }
-  25% {
-    opacity: 0.4;
-    transform: translate(0, 0) scale(0.6);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translate(-20px, 0) scale(0.8);
-  }
-  75% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    opacity: 0.6;
-    transform: translate(20px, 0) scale(0.8);
+    transform: translate(var(--travelLeft), 0) scale(0.8);
   }
 }

@@ -5,8 +5,8 @@
   --travelRight: 25px;
   --travelLeft: -25px;
   --borderThickness: 2px;
-  --colorOne: blue;
-  --colorTwo: red;
+  --colorOne: #657EC5;
+  --colorTwo: #65AAC5;
 }
 
 body {
